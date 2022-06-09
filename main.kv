@@ -1,0 +1,122 @@
+#:import sm kivy.uix.screenmanager
+ScreenManager:
+    id:manager
+    transition:sm.FadeTransition(duration=.0)
+    MDScreen:
+        name:"username"
+        FloatLayout:
+            MDLabel:
+                text:"Create Account!"
+                font_style:"H5"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.8}
+            MDTextField:
+                id:username
+                mode: "rectangle"
+                fill_color: 0, 0, 0, .4
+                size_hint: .6, .1
+                pos_hint:{'center_x':.5, 'center_y':.58}
+                hint_text:"Username:"
+                text_color: 1, 1, 1, 1
+                font_size: dp(25)
+            MDRaisedButton:
+                id:usr
+                text: "Next"
+                size_hint: .4, .06
+                pos_hint:{'center_x':.7, 'center_y':.3}
+                md_bg_color: 83 / 225, 186 / 225, 115 / 225, 1
+                on_release:
+                    app.username_verify(username.text)
+    MDScreen:
+        name:"passcode"
+        FloatLayout:
+            MDLabel:
+                text:"Enter pass code"
+                font_style:"H5"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.77}
+            MDLabel:
+                text:"It is required everytime you login for security purporse"
+                font_style:"Caption"
+                font_size: "13sp"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.72}
+            NumberOnlyField:
+                id:code
+                mode: "rectangle"
+                fill_color: 0, 0, 0, .4
+                size_hint: .5, .1
+                hint_text:"Code"
+                password:True
+                pos_hint:{'center_x':.5, 'center_y':.6}
+                text_color: 1, 1, 1, 1
+                font_size: dp(50)
+            NumberOnlyField:
+                id:recode
+                mode: "rectangle"
+                fill_color: 0, 0, 0, .4
+                size_hint: .5, .1
+                hint_text:"Code"
+                helper_text: "hello"
+                password:True
+                pos_hint:{'center_x':.5, 'center_y':.45}
+                text_color: 1, 1, 1, 1
+                font_size: dp(50)
+                on_text:
+                    app.passcode_verify(self)
+            MDRaisedButton:
+                id:usr
+                text: "Next"
+                size_hint: .4, .06
+                pos_hint:{'center_x':.7, 'center_y':.3}
+                md_bg_color: 83 / 225, 186 / 225, 115 / 225, 1
+                on_release:
+                    app.code_save()
+    MDScreen:
+        name:"account"
+        FloatLayout:
+            MDLabel:
+                text:"Cash account"
+                font_style:"H4"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.85}
+            MDLabel:
+                text:"Money you have in Cash"
+                font_style:"Caption"
+                font_size: "13sp"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.72}
+            MDLabel
+                text:app.dummy_cash+"/TSH"
+                font_style:"Body1"
+                font_size: "40sp"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.65}
+            NumberOnlyField:
+                id:cash_inpt
+                mode: "rectangle"
+                fill_color: 0, 0, 0, .4
+                size_hint: .5, .1
+                hint_text:"Money in Cash"
+                pos_hint:{'center_x':.5, 'center_y':.45}
+                text_color: 1, 1, 1, 1
+                font_size: dp(20)
+                on_text:
+                    app.cash_verify(self.text)
+    MDScreen:
+        name:"genesis"
+        FloatLayout:
+            MDIcon:
+                icon:"plus"
+                font_size: "60sp"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.6}
+            MDLabel:
+                text:"Create Account"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.5}
+    MDScreen:
+        name:"sec"
+        md_bg_color:83 / 225, 186 / 225, 115 / 225, 1
+        MDBoxLayout:
+            orientation:'vertical'
