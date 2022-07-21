@@ -9,15 +9,41 @@ ScreenManager:
                 text:"Create Account!"
                 font_style:"H5"
                 halign:"center"
+                theme_text_color:"Custom"
+                font_name:'components/fonts/Gill Sans Bold.otf'
+                text_color:36/255, 146/255, 255/255, 1
                 pos_hint:{"center_x":.5,"center_y":.8}
+            MDIcon:
+                icon:"numeric-1"
+                halign:"center"
+                pos_hint:{"center_x":.3,"center_y":.73}
+                theme_text_color:"Custom"
+                text_color:.5,.5,1,1
+                font_size: dp(50)
+            MDIcon:
+                icon:"numeric-2"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.73}
+                theme_text_color:"Custom"
+                text_color:.5,.5,.6,1
+                font_size: dp(30)
+            MDIcon:
+                icon:"numeric-3"
+                halign:"center"
+                pos_hint:{"center_x":.7,"center_y":.73}
+                theme_text_color:"Custom"
+                text_color:.5,.5,.5,1
+                font_size: dp(30)
+            MDSeparator:
+                pos_hint:{"center_x":.5,"center_y":.73}
             MDTextField:
                 id:username
                 mode: "rectangle"
-                fill_color: 0, 0, 0, .4
+                #fill_color: 0, 0, 0, .4
                 size_hint: .6, .1
                 pos_hint:{'center_x':.5, 'center_y':.58}
                 hint_text:"Username:"
-                text_color: 1, 1, 1, 1
+                #text_color: 1, 1, 1, 1
                 font_size: dp(25)
             MDRaisedButton:
                 id:usr
@@ -33,34 +59,57 @@ ScreenManager:
             MDLabel:
                 text:"Enter pass code"
                 font_style:"H5"
+                theme_text_color:"Custom"
+                text_color:36/255, 146/255, 255/255, 1
                 halign:"center"
-                pos_hint:{"center_x":.5,"center_y":.77}
+                pos_hint:{"center_x":.5,"center_y":.83}
+                font_name:'components/fonts/Gill Sans Bold.otf'
             MDLabel:
                 text:"It is required everytime you login for security purporse"
                 font_style:"Caption"
                 font_size: "13sp"
                 halign:"center"
-                pos_hint:{"center_x":.5,"center_y":.72}
+                font_name:'components/fonts/Gill Sans.otf'
+                pos_hint:{"center_x":.5,"center_y":.8}
+            MDIcon:
+                icon:"numeric-1"
+                halign:"center"
+                pos_hint:{"center_x":.3,"center_y":.73}
+                theme_text_color:"Custom"
+                text_color:.5,.5,.5,1
+                font_size: dp(30)
+            MDIcon:
+                icon:"numeric-2"
+                halign:"center"
+                pos_hint:{"center_x":.5,"center_y":.73}
+                theme_text_color:"Custom"
+                text_color:.5,.5,1,1
+                font_size: dp(50)
+            MDIcon:
+                icon:"numeric-3"
+                halign:"center"
+                pos_hint:{"center_x":.7,"center_y":.73}
+                theme_text_color:"Custom"
+                text_color:.5,.5,.5,1
+                font_size: dp(30)
+            MDSeparator:
+                pos_hint:{"center_x":.5,"center_y":.73}
             NumberOnlyField:
                 id:code
                 mode: "rectangle"
-                fill_color: 0, 0, 0, .4
                 size_hint: .5, .1
                 hint_text:"Code"
                 password:True
                 pos_hint:{'center_x':.5, 'center_y':.6}
-                text_color: 1, 1, 1, 1
                 font_size: dp(50)
             NumberOnlyField:
                 id:recode
                 mode: "rectangle"
-                fill_color: 0, 0, 0, .4
                 size_hint: .5, .1
-                hint_text:"Code"
+                hint_text:"Confirm-Code"
                 helper_text: "hello"
                 password:True
                 pos_hint:{'center_x':.5, 'center_y':.45}
-                text_color: 1, 1, 1, 1
                 font_size: dp(50)
                 on_text:
                     app.passcode_verify(self)
@@ -80,6 +129,7 @@ ScreenManager:
                 font_style:"H4"
                 halign:"center"
                 pos_hint:{"center_x":.5,"center_y":.85}
+                font_name:'components/fonts/Gill Sans Heavy.otf'
             MDLabel:
                 text:"Money you have in Cash"
                 font_style:"Caption"
@@ -105,18 +155,82 @@ ScreenManager:
                     app.cash_verify(self.text)
     MDScreen:
         name:"genesis"
+        md_bg_color:211/255, 211/255, 211/255, 1
         FloatLayout:
-            MDIcon:
+            MoneyCard:
+                #md_bg_color:165/255, 184/255, 189/255, 1
+                md_bg_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5, "center_y":.9}
+                line_color:0.2, 0.2, 0.2, 0.8
+                FloatLayout:
+                    MDLabel:
+                        halign:"center"
+                        text:"+30,000/="
+                        theme_text_color:"Custom"
+                        text_color:1,1,1,1
+                        font_style:"H4"
+                        pos_hint:{"center_x":.5, "center_y":.9}
+                        font_name:'components/fonts/Gill Sans.otf'
+                    MDSeparator:
+                        pos_hint:{"center_x":.5, "center_y":.7}
+                    MDLabel:
+                        #halign:"center"
+                        theme_text_color:"Custom"
+                        text_color:1,1,1,1
+                        text:"Income: +50,000/="
+                        font_style:"Body1"
+                        font_name:'components/fonts/Gill Sans.otf'
+                        pos_hint:{"center_x":.5, "center_y":.4}
+                    MDLabel:
+                        #halign:"center"
+                        theme_text_color:"Custom"
+                        text_color:1,1,1,1
+                        text:"Expenses: -20,000/="
+                        font_style:"Body1"
+                        font_name:'components/fonts/Gill Sans.otf'
+                        pos_hint:{"center_x":.5, "center_y":.2}
+
+            MDFloatingActionButton:
                 icon:"plus"
-                font_size: "60sp"
-                halign:"center"
-                pos_hint:{"center_x":.5,"center_y":.6}
-            MDLabel:
-                text:"Create Account"
-                halign:"center"
-                pos_hint:{"center_x":.5,"center_y":.5}
+                id:plus
+                pos_hint:{"center_x":.84,"center_y":.14}
+                md_bg_color:36/255, 146/255, 255/255, 1
+                on_release:
+                    app.screen_capture("Add_data")
     MDScreen:
-        name:"sec"
-        md_bg_color:83 / 225, 186 / 225, 115 / 225, 1
-        MDBoxLayout:
-            orientation:'vertical'
+        name:"Add_data"
+        md_bg_color:211/255, 211/255, 211/255, 1
+        FloatLayout:
+            MDIconButton:
+                icon:"arrow-left"
+                pos_hint:{"center_x":.1,"center_y":.95}
+
+
+<MoneyCard@MDCard>:
+    orientation: "vertical"
+    md_bg_color: 1, 1, 1, 1
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 20
+    border_color_a: .5
+    radius: [15]
+    size_hint: None, None
+    size: app.size_x/1.5, app.size_y/6
+    focus_behavior: False
+    ripple_behavior: False
+    elevation: 9
+
+
+<DataCard@MDCard>:
+    orientation: "vertical"
+    md_bg_color: 1, 1, 1, 1
+    pos_hint:{"center_x":.5,"center_y":.5}
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 20
+    border_color_a: .5
+    radius: [15]
+    size_hint: None, None
+    size: app.size_x/2.5, app.size_y/5
+    focus_behavior: False
+    ripple_behavior: False
