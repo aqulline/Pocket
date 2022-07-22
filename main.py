@@ -6,6 +6,7 @@ from kivy.core.window import Window
 from kivy import utils
 from kivy.base import EventLoop
 from kivymd.toast import toast
+from kivymd.uix.bottomsheet import MDListBottomSheet
 
 from kivymd.uix.textfield import MDTextField
 
@@ -43,6 +44,37 @@ class MainApp(MDApp):
 
     # DUMMY VARS
     dummy_cash = StringProperty("0")
+    dummy_amount = StringProperty("0")
+
+    # INPUTS VARS
+    amount = StringProperty("0")
+    data_name = StringProperty("Chagua Aina!")
+    data_icon = StringProperty("exclamation")
+    matumizi = {
+        "Chakula": "food",
+        "Nauli": "van-passenger",
+        "Maji": "water-pump",
+        "Umeme": "electron-framework",
+        "Taka": "trash-can",
+        "Gas": "gas-cylinder",
+        "Perfume": "air-filter",
+        "Mafuta": "water",
+        "Lotion": "lotion",
+        "Viungo": "carrot",
+        "Vocha": "instagram",
+        "Nguo": "tshirt-v",
+        "Viatu": "shoe-sneaker",
+        "Girl Friend": "face-woman",
+        "Boy Friend": "face",
+        "Kopesha": "alert-minus"
+    }
+    kipato = {
+        "Boom": "credit-card-scan",
+        "Wazazi": "human-male-boy",
+        "kopeshwa": "wallet-plus",
+        "Mauzo": "sale",
+        "Vingine": "bank-plus"
+    }
 
     # ACCOUNT VARS
     user_name = StringProperty("")
@@ -152,7 +184,58 @@ class MainApp(MDApp):
         self.current = self.screens[len(self.screens) - 1]
         self.screen_capture(self.current)
 
-    """End of Screen Functions"""
+    """
+    
+    End of Screen Functions
+    
+    """
+    """
+            Down here Stays Data inputs Functions
+    """
+    # MY keyboard functions
+    def amount_update(self, num):
+        if self.amount == "0":
+            self.amount = num
+            self.dummy_amount = num
+        else:
+            if len(self.dummy_amount) < 8:
+                self.dummy_amount += num
+                self.amount = '{:,}'.format(int(self.dummy_amount))
+
+    def back_space(self):
+        self.dummy_amount = self.amount.replace(",","")
+        leng = len(self.dummy_amount) - 1
+        self.dummy_amount = self.dummy_amount[0:leng]
+        if self.dummy_amount == '':
+            self.amount = "0"
+        else:
+            self.dummy_amount = self.dummy_amount
+            self.amount = '{:,}'.format(int(self.dummy_amount))
+
+    # The Data types and sheets
+
+    def callback_for_menu_items(self, y, z):
+        toast(y)
+        self.data_name = y
+        self.data_icon = z
+
+    def category_sheet(self, data):
+        bottom_sheet_menu = MDListBottomSheet()
+        vimbweta = data
+        count = 1
+        for i in vimbweta.items():
+            bottom_sheet_menu.add_item(
+                i[0],
+                lambda x, y=i[0], z=i[1]: self.callback_for_menu_items(y,z),
+                icon=i[1],
+            )
+            count += 1
+        bottom_sheet_menu.radius_from = 'top'
+        bottom_sheet_menu.open()
+
+    """
+        End of Data Inputs Functions
+    """
 
     """
     
@@ -167,8 +250,8 @@ class MainApp(MDApp):
     def build(self):
         self.size_x, self.size_y = Window.size
         self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = "DeepPurple"
-        self.theme_cls.accent = "Brown"
+        #self.theme_cls.primary_palette = "DeepPurple"
+        #self.theme_cls.accent = "Brown"
         self.size_x, self.size_y = Window.size
         self.title = "POCKET"
 
