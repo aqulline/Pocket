@@ -154,6 +154,49 @@ ScreenManager:
                 on_text:
                     app.cash_verify(self.text)
     MDScreen:
+        name:"login"
+        FloatLayout:
+            Deco:
+                size: app.size_x/1.2, app.size_y/2.2
+                pos_hint:{"center_x":.5,"center_y":.6}
+            MDLabel:
+                text:"Login"
+                halign:"center"
+                theme_text_color: "Custom"
+                font_style:"H3"
+                text_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5,"center_y":.75}
+            MDLabel:
+                text:"Enter your passcode"
+                halign:"center"
+                font_style:"Caption"
+                text_color:36/255, 146/255, 255/255, 1
+                pos_hint:{"center_x":.5,"center_y":.7}
+            MDIcon:
+                id:lock
+                icon:"lock"
+                halign:"center"
+                pos_hint:{"center_x":.2,"center_y":.58}
+            MDTextField:
+                id:lgn_code
+                mode: "rectangle"
+                size_hint: .5, .09
+                hint_text:"Code"
+                password:True
+                pos_hint:{'center_x':.53, 'center_y':.58}
+                font_size: dp(25)
+                on_text:
+                    app.login_auto()
+            MDRaisedButton:
+                id:lgn
+                text: "Login"
+                size_hint: .4, .06
+                #pos_hint:{'center_x':.65, 'center_y':.45}
+                pos_hint:{'center_x':.65, 'center_y':2}
+                md_bg_color: 83 / 225, 186 / 225, 115 / 225, 1
+                on_release:
+                    manager.current="genesis"
+    MDScreen:
         name:"genesis"
         md_bg_color:211/255, 211/255, 211/255, 1
         FloatLayout:

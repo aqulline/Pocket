@@ -1,5 +1,8 @@
+import os
 import re
+import json
 
+from kivy.clock import Clock
 from kivy.properties import StringProperty, ObjectProperty, NumericProperty
 from kivymd.app import MDApp
 from kivy.core.window import Window
@@ -85,6 +88,7 @@ class MainApp(MDApp):
         self.sm = self.root
         self.keyboard_hooker()
         self.backgrounds()
+        Clock.schedule_once(lambda x: self.register_check(), .1)
 
     def backgrounds(self):
         plus_button = self.root.ids.plus
@@ -95,6 +99,30 @@ class MainApp(MDApp):
                 ACCOUNTS FUNCTIONS!
     
     """
+
+    def register_check(self):
+        file_size = os.path.getsize("database/user.json")
+        if file_size == 0:
+            self.sm.current = "username"
+        else:
+            self.sm.current = "login"
+
+    def login_auto(self):
+        with open("database/user.json") as file:
+            code = json.load(file)
+            code = code["code"]
+            cd = self.root.ids.lgn_code
+            lk = self.root.ids.lock
+            lg = self.root.ids.lgn
+            if cd.text == code:
+                toast("Succes!")
+                cd.password = False
+                lk.icon = "lock-open-variant"
+                lg.pos_hint = {'center_x': .65, 'center_y': .45}
+            else:
+                cd.password = True
+                lk.icon = "lock"
+                lg.pos_hint = {'center_x': .65, 'center_y': 2}
 
     def passcode_verify(self, id):
         code = self.root.ids.code
@@ -115,6 +143,7 @@ class MainApp(MDApp):
         if self.code_bool:
             code = self.root.ids.code
             self.passcode = code.text
+            self.database_user()
             self.sm.current = "genesis"
         if not self.code_bool:
             toast("Code not Match!")
@@ -132,6 +161,13 @@ class MainApp(MDApp):
         else:
             self.dummy_cash = cash
             self.dummy_cash = '{:,}'.format(int(self.dummy_cash))
+
+    def database_user(self):
+        with open("database/user.json", "w") as file:
+            data = {"name": self.user_name, "code": self.passcode}
+            data_dump = json.dumps(data, indent=6)
+            file.write(data_dump)
+            file.close()
 
     """
 
@@ -192,6 +228,7 @@ class MainApp(MDApp):
     """
             Down here Stays Data inputs Functions
     """
+
     # MY keyboard functions
     def amount_update(self, num):
         if self.amount == "0":
@@ -203,7 +240,7 @@ class MainApp(MDApp):
                 self.amount = '{:,}'.format(int(self.dummy_amount))
 
     def back_space(self):
-        self.dummy_amount = self.amount.replace(",","")
+        self.dummy_amount = self.amount.replace(",", "")
         leng = len(self.dummy_amount) - 1
         self.dummy_amount = self.dummy_amount[0:leng]
         if self.dummy_amount == '':
@@ -226,7 +263,7 @@ class MainApp(MDApp):
         for i in vimbweta.items():
             bottom_sheet_menu.add_item(
                 i[0],
-                lambda x, y=i[0], z=i[1]: self.callback_for_menu_items(y,z),
+                lambda x, y=i[0], z=i[1]: self.callback_for_menu_items(y, z),
                 icon=i[1],
             )
             count += 1
@@ -250,8 +287,8 @@ class MainApp(MDApp):
     def build(self):
         self.size_x, self.size_y = Window.size
         self.theme_cls.theme_style = "Light"
-        #self.theme_cls.primary_palette = "DeepPurple"
-        #self.theme_cls.accent = "Brown"
+        self.theme_cls.primary_palette = "DeepPurple"
+        # self.theme_cls.accent = "Brown"
         self.size_x, self.size_y = Window.size
         self.title = "POCKET"
 
