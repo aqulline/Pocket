@@ -247,6 +247,14 @@ ScreenManager:
             Deco:
                 md_bg_color:36/255, 146/255, 255/255, 1
                 pos_hint:{"center_x":.5,"center_y":.9}
+            MDLabel:
+                halign:"center"
+                text:app.date_frm
+                theme_text_color:"Custom"
+                text_color:1, 1, 1, 1
+                font_size:"24dp"
+                pos_hint:{"center_x":.5,"center_y":.97}
+                font_name:'components/fonts/Gill Sans.otf'
             MDIconButton:
                 icon:"arrow-left"
                 pos_hint:{"center_x":.1,"center_y":.95}
@@ -257,6 +265,7 @@ ScreenManager:
                     icon: 'credit-card-minus'
                     color:1,1,1,1
                     selected_chip_color: .5,.5,1,1
+                    font_name:'components/fonts/Gill Sans.otf'
                     on_release:
                         app.category_sheet(app.matumizi)
                 MDChip:
@@ -273,6 +282,7 @@ ScreenManager:
                 font_size:"30sp"
                 theme_text_color: "Custom"
                 text_color: 1, 1, 1, 1
+                font_name:'components/fonts/Gill Sans.otf'
             MDLabel:
                 text:app.data_name
                 halign:"center"
@@ -351,121 +361,145 @@ ScreenManager:
     FloatLayout:
         MDRaisedButton:
             text: "7"
-            size_hint: .3, .2
-            elevation:9
+            size_hint: .3, .25
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.13, 'center_y':.9}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("7")
         MDRaisedButton:
             text: "8"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.49, 'center_y':.9}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("8")
         MDRaisedButton:
             text: "9"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.85, 'center_y':.9}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("9")
         MDRaisedButton:
             text: "4"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.13, 'center_y':.65}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("4")
         MDRaisedButton:
             text: "5"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.49, 'center_y':.65}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("5")
         MDRaisedButton:
             text: "6"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.85, 'center_y':.65}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("6")
         MDRaisedButton:
             text: "1"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.13, 'center_y':.4}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("1")
         MDRaisedButton:
             text: "2"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.49, 'center_y':.4}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("2")
         MDRaisedButton:
             text: "3"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.85, 'center_y':.4}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("1")
         MDRaisedButton:
             text: "000"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.13, 'center_y':.1}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("000")
         MDRaisedButton:
             text: "0"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.49, 'center_y':.1}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.amount_update("0")
         MDRaisedButton:
             text: "X"
             size_hint: .3, .2
-            elevation:9
             font_size: "29sp"
+            elevation:12
+            theme_text_color:"Custom"
+            text_color: 78/255, 82/255, 84/255, 1
+            md_bg_color: 1, 1, 1, 1
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.85, 'center_y':.1}
-            md_bg_color: 36/255, 146/255, 255/255, 1
             on_release:
                 app.back_space()

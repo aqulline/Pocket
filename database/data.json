@@ -1,0 +1,32 @@
+{
+    "data": {
+        "expenses": {
+            "nyanya": {
+                "count": "1",
+                "name": "nyanya",
+                "total_amount": "200",
+                "category": "expenses",
+                "icon": "dog",
+                "date": "2022-07-29"
+            }
+        },
+        "income": {
+            "nyanya": {
+                "count": "1",
+                "name": "nyanya",
+                "total_amount": "200",
+                "category": "income",
+                "icon": "dog",
+                "date": "2022-07-29"
+            },
+            "kitungu": {
+                "count": "5",
+                "name": "kitungu",
+                "total_amount": "1000",
+                "category": "income",
+                "icon": "dog",
+                "date": "2022-07-29"
+            }
+        }
+    }
+}

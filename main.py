@@ -3,15 +3,16 @@ import re
 import json
 
 from kivy.clock import Clock
-from kivy.properties import StringProperty, ObjectProperty, NumericProperty
+from kivy.properties import StringProperty, ObjectProperty, NumericProperty, DictProperty
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy import utils
 from kivy.base import EventLoop
 from kivymd.toast import toast
 from kivymd.uix.bottomsheet import MDListBottomSheet
-
 from kivymd.uix.textfield import MDTextField
+
+from database import Database as DT
 
 Window.keyboard_anim_args = {"d": .2, "t": "linear"}
 Window.softinput_mode = "below_target"
@@ -53,31 +54,10 @@ class MainApp(MDApp):
     amount = StringProperty("0")
     data_name = StringProperty("Chagua Aina!")
     data_icon = StringProperty("exclamation")
-    matumizi = {
-        "Chakula": "food",
-        "Nauli": "van-passenger",
-        "Maji": "water-pump",
-        "Umeme": "electron-framework",
-        "Taka": "trash-can",
-        "Gas": "gas-cylinder",
-        "Perfume": "air-filter",
-        "Mafuta": "water",
-        "Lotion": "lotion",
-        "Viungo": "carrot",
-        "Vocha": "instagram",
-        "Nguo": "tshirt-v",
-        "Viatu": "shoe-sneaker",
-        "Girl Friend": "face-woman",
-        "Boy Friend": "face",
-        "Kopesha": "alert-minus"
-    }
-    kipato = {
-        "Boom": "credit-card-scan",
-        "Wazazi": "human-male-boy",
-        "kopeshwa": "wallet-plus",
-        "Mauzo": "sale",
-        "Vingine": "bank-plus"
-    }
+    matumizi = DictProperty(DT.exp_list(DT()))
+    kipato = DictProperty(DT.inc_list(DT()))
+    date = StringProperty(DT.get_date(DT()))
+    date_frm = StringProperty(DT.date_format(DT()))
 
     # ACCOUNT VARS
     user_name = StringProperty("")
@@ -108,21 +88,18 @@ class MainApp(MDApp):
             self.sm.current = "login"
 
     def login_auto(self):
-        with open("database/user.json") as file:
-            code = json.load(file)
-            code = code["code"]
-            cd = self.root.ids.lgn_code
-            lk = self.root.ids.lock
-            lg = self.root.ids.lgn
-            if cd.text == code:
-                toast("Succes!")
-                cd.password = False
-                lk.icon = "lock-open-variant"
-                lg.pos_hint = {'center_x': .65, 'center_y': .45}
-            else:
-                cd.password = True
-                lk.icon = "lock"
-                lg.pos_hint = {'center_x': .65, 'center_y': 2}
+        cd = self.root.ids.lgn_code
+        lk = self.root.ids.lock
+        lg = self.root.ids.lgn
+        if cd.text == DT.login(DT()):
+            toast("Succes!")
+            cd.password = False
+            lk.icon = "lock-open-variant"
+            lg.pos_hint = {'center_x': .65, 'center_y': .45}
+        else:
+            cd.password = True
+            lk.icon = "lock"
+            lg.pos_hint = {'center_x': .65, 'center_y': 2}
 
     def passcode_verify(self, id):
         code = self.root.ids.code
@@ -163,11 +140,7 @@ class MainApp(MDApp):
             self.dummy_cash = '{:,}'.format(int(self.dummy_cash))
 
     def database_user(self):
-        with open("database/user.json", "w") as file:
-            data = {"name": self.user_name, "code": self.passcode}
-            data_dump = json.dumps(data, indent=6)
-            file.write(data_dump)
-            file.close()
+        DT.user_register(DT(), self.user_name, self.passcode)
 
     """
 
@@ -287,7 +260,7 @@ class MainApp(MDApp):
     def build(self):
         self.size_x, self.size_y = Window.size
         self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = "DeepPurple"
+        #self.theme_cls.primary_palette = "DeepPurple"
         # self.theme_cls.accent = "Brown"
         self.size_x, self.size_y = Window.size
         self.title = "POCKET"
