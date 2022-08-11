@@ -1,9 +1,8 @@
 import os
 import re
-import json
 
 from kivy.clock import Clock
-from kivy.properties import StringProperty, ObjectProperty, NumericProperty, DictProperty
+from kivy.properties import StringProperty, ObjectProperty, NumericProperty, DictProperty, ListProperty
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy import utils
@@ -12,6 +11,7 @@ from kivymd.toast import toast
 from kivymd.uix.bottomsheet import MDListBottomSheet
 from kivymd.uix.textfield import MDTextField
 
+from database_query import Database_query as DQ
 from database import Database as DT
 
 Window.keyboard_anim_args = {"d": .2, "t": "linear"}
@@ -46,14 +46,11 @@ class MainApp(MDApp):
     screens_size = NumericProperty(len(screens) - 1)
     current = StringProperty(screens[len(screens) - 1])
 
-    # DUMMY VARS
-    dummy_cash = StringProperty("0")
-    dummy_amount = StringProperty("0")
-
     # INPUTS VARS
     amount = StringProperty("0")
     data_name = StringProperty("Chagua Aina!")
     data_icon = StringProperty("exclamation")
+    category = StringProperty("")
     matumizi = DictProperty(DT.exp_list(DT()))
     kipato = DictProperty(DT.inc_list(DT()))
     date = StringProperty(DT.get_date(DT()))
@@ -63,6 +60,13 @@ class MainApp(MDApp):
     user_name = StringProperty("")
     passcode = StringProperty("")
     code_bool = False
+    account_amount = StringProperty(DQ.account_info(DQ())[0])
+    income = StringProperty(DQ.account_info(DQ())[1])
+    expenses = StringProperty(DQ.account_info(DQ())[2])
+
+    # DUMMY VARS
+    dummy_cash = StringProperty("0")
+    dummy_amount = StringProperty("0")
 
     def on_start(self):
         self.sm = self.root
@@ -82,6 +86,7 @@ class MainApp(MDApp):
 
     def register_check(self):
         file_size = os.path.getsize("database/user.json")
+        self.symbol_calc()
         if file_size == 0:
             self.sm.current = "username"
         else:
@@ -243,8 +248,46 @@ class MainApp(MDApp):
         bottom_sheet_menu.radius_from = 'top'
         bottom_sheet_menu.open()
 
+    def container_maker(self):
+        self.data_container(self.data_name, self.amount, self.category, self.data_icon)
+        self.refresh()
+
+    def data_container(self, name, amount, cate, icon):
+        DT.data_input(DT(), name, amount, cate, icon)
+
+
+
     """
         End of Data Inputs Functions
+    """
+
+    """
+        WEAK FUNCTIONS
+    
+    """
+
+    def toasting(self):
+        toast("chagua matumizi au kipato!")
+
+    def symbol_calc(self):
+        inc = self.income.replace(",", "")
+        exp = self.expenses.replace(",", "")
+        acc = int(inc) - int(exp)
+        if acc > 0:
+            self.account_amount = f"+{self.account_amount}/="
+        elif acc < 0:
+            self.account_amount = f"-{self.account_amount}/="
+        else:
+            self.account_amount = f"{self.account_amount}/="
+
+    def refresh(self):
+        self.account_amount = DQ.account_info(DQ())[0]
+        self.income = DQ.account_info(DQ())[1]
+        self.expenses = DQ.account_info(DQ())[2]
+        self.symbol_calc()
+
+    """
+        END OF WEAK FUNCTIONS
     """
 
     """
@@ -260,7 +303,7 @@ class MainApp(MDApp):
     def build(self):
         self.size_x, self.size_y = Window.size
         self.theme_cls.theme_style = "Light"
-        #self.theme_cls.primary_palette = "DeepPurple"
+        # self.theme_cls.primary_palette = "DeepPurple"
         # self.theme_cls.accent = "Brown"
         self.size_x, self.size_y = Window.size
         self.title = "POCKET"

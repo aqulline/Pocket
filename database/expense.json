@@ -1,63 +1,100 @@
 {
     "data": {
-        "202207": {
-            "w4": {
-                "20220729": {
-                    "20220729134751488268": {
-                        "name": "nyanya",
-                        "amount": "200",
+        "202208": {
+            "w1": {
+                "20220804": {
+                    "20220804125254656985": {
+                        "name": "Perfume",
+                        "amount": "5,000",
                         "category": "expenses",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "air-filter",
+                        "date": "2022-08-04"
                     },
-                    "20220729134754085041": {
-                        "name": "nyanya",
-                        "amount": "200",
+                    "20220804125524364841": {
+                        "name": "Nauli",
+                        "amount": "2,000",
                         "category": "expenses",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "van-passenger",
+                        "date": "2022-08-04"
                     },
-                    "20220729142526355034": {
-                        "name": "nyanya",
-                        "amount": "200",
+                    "20220804125921964854": {
+                        "name": "Taka",
+                        "amount": "1,000",
                         "category": "expenses",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "trash-can",
+                        "date": "2022-08-04"
                     },
-                    "20220729142645697486": {
-                        "name": "nyanya",
-                        "amount": "200",
+                    "20220804130113836672": {
+                        "name": "Chakula",
+                        "amount": "2,500",
                         "category": "expenses",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "food",
+                        "date": "2022-08-04"
                     },
-                    "20220729143104048930": {
-                        "name": "nyanya",
-                        "amount": "200",
+                    "20220804130448328542": {
+                        "name": "Vocha",
+                        "amount": "2,000",
                         "category": "expenses",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "instagram",
+                        "date": "2022-08-04"
                     },
-                    "20220729144825940916": {
-                        "name": "nyanya",
-                        "amount": "200",
+                    "20220804130747376051": {
+                        "name": "Girl Friend",
+                        "amount": "500",
                         "category": "expenses",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "face-woman",
+                        "date": "2022-08-04"
                     },
-                    "20220729144840760806": {
-                        "name": "nyanya",
+                    "20220804130931229086": {
+                        "name": "Maji",
                         "amount": "200",
                         "category": "expenses",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "water-pump",
+                        "date": "2022-08-04"
                     },
-                    "20220729144844799225": {
-                        "name": "nyanya",
-                        "amount": "200",
+                    "20220804131002816107": {
+                        "name": "Nauli",
+                        "amount": "600",
                         "category": "expenses",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "van-passenger",
+                        "date": "2022-08-04"
+                    },
+                    "20220804131439362614": {
+                        "name": "Chakula",
+                        "amount": "2,000",
+                        "category": "expenses",
+                        "icon": "food",
+                        "date": "2022-08-04"
+                    },
+                    "20220804131532339579": {
+                        "name": "Chakula",
+                        "amount": "2,000",
+                        "category": "expenses",
+                        "icon": "food",
+                        "date": "2022-08-04"
+                    },
+                    "20220804131546146688": {
+                        "name": "Chakula",
+                        "amount": "2,000",
+                        "category": "expenses",
+                        "icon": "food",
+                        "date": "2022-08-04"
+                    },
+                    "20220804131557665534": {
+                        "name": "Chakula",
+                        "amount": "2,000",
+                        "category": "expenses",
+                        "icon": "food",
+                        "date": "2022-08-04"
+                    }
+                },
+                "20220805": {
+                    "20220805144117741767": {
+                        "name": "Beer",
+                        "amount": "2,500",
+                        "category": "expenses",
+                        "icon": "bottle-soda",
+                        "date": "2022-08-05"
                     }
                 }
             }

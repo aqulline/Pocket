@@ -1,31 +1,79 @@
 {
     "data": {
-        "expenses": {
-            "nyanya": {
+        "income": {
+            "Boom": {
                 "count": "1",
-                "name": "nyanya",
-                "total_amount": "200",
-                "category": "expenses",
-                "icon": "dog",
-                "date": "2022-07-29"
+                "name": "Boom",
+                "total_amount": "500,000",
+                "category": "income",
+                "icon": "credit-card-scan",
+                "date": "2022-08-04"
+            },
+            "Wazazi": {
+                "count": "1",
+                "name": "Wazazi",
+                "total_amount": "5,000",
+                "category": "income",
+                "icon": "human-male-boy",
+                "date": "2022-08-04"
             }
         },
-        "income": {
-            "nyanya": {
+        "expenses": {
+            "Perfume": {
                 "count": "1",
-                "name": "nyanya",
-                "total_amount": "200",
-                "category": "income",
-                "icon": "dog",
-                "date": "2022-07-29"
+                "name": "Perfume",
+                "total_amount": "5,000",
+                "category": "expenses",
+                "icon": "air-filter",
+                "date": "2022-08-04"
             },
-            "kitungu": {
-                "count": "5",
-                "name": "kitungu",
-                "total_amount": "1000",
-                "category": "income",
-                "icon": "dog",
-                "date": "2022-07-29"
+            "Nauli": {
+                "count": "1",
+                "name": "Nauli",
+                "total_amount": "2,000",
+                "category": "expenses",
+                "icon": "van-passenger",
+                "date": "2022-08-04"
+            },
+            "Taka": {
+                "count": "1",
+                "name": "Taka",
+                "total_amount": "1,000",
+                "category": "expenses",
+                "icon": "trash-can",
+                "date": "2022-08-04"
+            },
+            "Chakula": {
+                "count": "4",
+                "name": "Chakula",
+                "total_amount": "8,500",
+                "category": "expenses",
+                "icon": "food",
+                "date": "2022-08-04"
+            },
+            "Vocha": {
+                "count": "1",
+                "name": "Vocha",
+                "total_amount": "2,000",
+                "category": "expenses",
+                "icon": "instagram",
+                "date": "2022-08-04"
+            },
+            "Maji": {
+                "count": "1",
+                "name": "Maji",
+                "total_amount": "200",
+                "category": "expenses",
+                "icon": "water-pump",
+                "date": "2022-08-04"
+            },
+            "Beer": {
+                "count": "1",
+                "name": "Beer",
+                "total_amount": "2,500",
+                "category": "expenses",
+                "icon": "bottle-soda",
+                "date": "2022-08-05"
             }
         }
     }

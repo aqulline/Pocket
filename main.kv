@@ -166,12 +166,14 @@ ScreenManager:
                 font_style:"H3"
                 text_color:36/255, 146/255, 255/255, 1
                 pos_hint:{"center_x":.5,"center_y":.75}
+                font_name:'components/fonts/Gill Sans.otf'
             MDLabel:
                 text:"Enter your passcode"
                 halign:"center"
                 font_style:"Caption"
                 text_color:36/255, 146/255, 255/255, 1
                 pos_hint:{"center_x":.5,"center_y":.7}
+                font_name:'components/fonts/Gill Sans.otf'
             MDIcon:
                 id:lock
                 icon:"lock"
@@ -208,7 +210,7 @@ ScreenManager:
                 FloatLayout:
                     MDLabel:
                         halign:"center"
-                        text:"+30,000/="
+                        text:app.account_amount
                         theme_text_color:"Custom"
                         text_color:1,1,1,1
                         font_style:"H4"
@@ -220,7 +222,7 @@ ScreenManager:
                         #halign:"center"
                         theme_text_color:"Custom"
                         text_color:1,1,1,1
-                        text:"Income: +50,000/="
+                        text:"Income: +"+app.income+"/="
                         font_style:"Body1"
                         font_name:'components/fonts/Gill Sans.otf'
                         pos_hint:{"center_x":.5, "center_y":.4}
@@ -228,7 +230,7 @@ ScreenManager:
                         #halign:"center"
                         theme_text_color:"Custom"
                         text_color:1,1,1,1
-                        text:"Expenses: -20,000/="
+                        text:"Expenses: -"+app.expenses+"/="
                         font_style:"Body1"
                         font_name:'components/fonts/Gill Sans.otf'
                         pos_hint:{"center_x":.5, "center_y":.2}
@@ -268,6 +270,7 @@ ScreenManager:
                     font_name:'components/fonts/Gill Sans.otf'
                     on_release:
                         app.category_sheet(app.matumizi)
+                        app.category = "expenses"
                 MDChip:
                     text: 'Kipato'
                     icon: 'credit-card-plus'
@@ -275,6 +278,7 @@ ScreenManager:
                     selected_chip_color: .5,.5,1,1
                     on_release:
                         app.category_sheet(app.kipato)
+                        app.category = "income"
             MDLabel:
                 text:app.amount
                 halign:"center"
@@ -284,12 +288,15 @@ ScreenManager:
                 text_color: 1, 1, 1, 1
                 font_name:'components/fonts/Gill Sans.otf'
             MDLabel:
-                text:app.data_name
+                text:f"[ref=hello]" + app.data_name + "[/ref]"
                 halign:"center"
                 font_size:"20dp"
                 pos_hint:{"center_x":.251,"center_y":.8}
                 font_style:"Subtitle1"
                 font_name:'components/fonts/Gill Sans.otf'
+                markup:True
+                on_ref_press:
+                    app.toasting()
             MDIcon:
                 icon:app.data_icon
                 halign:"center"
@@ -299,6 +306,8 @@ ScreenManager:
                 icon:"check"
                 pos_hint:{"center_x":.87,"center_y":.45}
                 md_bg_color:36/255, 146/255, 255/255, 1
+                on_release:
+                    app.container_maker()
             Keyboard:
                 pos_hint:{"center_x":.5,"center_y":.2}
 
@@ -361,7 +370,7 @@ ScreenManager:
     FloatLayout:
         MDRaisedButton:
             text: "7"
-            size_hint: .3, .25
+            size_hint: .3, .2
             font_size: "29sp"
             elevation:12
             theme_text_color:"Custom"

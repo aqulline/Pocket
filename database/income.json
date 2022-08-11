@@ -1,98 +1,21 @@
 {
     "data": {
-        "202207": {
-            "w4": {
-                "20220729": {
-                    "20220729142203489126": {
-                        "name": "nyanya",
-                        "amount": "200",
+        "202208": {
+            "w1": {
+                "20220804": {
+                    "20220804124309103902": {
+                        "name": "Boom",
+                        "amount": "500,000",
                         "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "credit-card-scan",
+                        "date": "2022-08-04"
                     },
-                    "20220729142211394268": {
-                        "name": "nyanya",
-                        "amount": "200",
+                    "20220804131723544991": {
+                        "name": "Wazazi",
+                        "amount": "5,000",
                         "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729142212669496": {
-                        "name": "nyanya",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729142509578756": {
-                        "name": "nyanya",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729144859012236": {
-                        "name": "nyanya",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729144938932829": {
-                        "name": "kitungu",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729150648981913": {
-                        "name": "kitungu",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729150711215943": {
-                        "name": "kitungu",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729150910243002": {
-                        "name": "kitungu",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729150943127350": {
-                        "name": "kitungu",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729150947201786": {
-                        "name": "kitungu",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729150950979316": {
-                        "name": "kitungu",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
-                    },
-                    "20220729150953809441": {
-                        "name": "kitungu",
-                        "amount": "200",
-                        "category": "income",
-                        "icon": "dog",
-                        "date": "2022-07-29"
+                        "icon": "human-male-boy",
+                        "date": "2022-08-04"
                     }
                 }
             }

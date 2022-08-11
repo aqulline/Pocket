@@ -2,6 +2,7 @@ import datetime
 import json
 from database_query import Database_query as DQ
 
+
 class Database():
     mnth_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -53,6 +54,7 @@ class Database():
         }
         qr_data = data[self.year_id][self.week_no]
         self.update_all(self.year_id, self.week_no, self.main_date, self.data_id, data)
+        self.account_info(amount, category)
         DQ.query(DQ(), qr_data, self.main_date, self.data_id, category)
 
     def write(self, data):
@@ -121,6 +123,40 @@ class Database():
         else:
             self.update_month(data)
 
+    def account_info(self, amount, cate):
+        if cate == "expenses":
+            data = self.read_data("database/account.json")
+            exp = data["expenses"]["info"]
+            inc = data["income"]["info"]
+            acc = data["account"]["info"]
+            exp = exp.replace(",", "")
+            acc = acc.replace(",", "")
+            amount = amount.replace(",", "")
+            acc = '{:,}'.format(int(int(acc) - int(amount)))
+            exp = '{:,}'.format(int(int(exp) + int(amount)))
+            new_data = {
+                "account": {"info": acc},
+                "income": {"info": inc},
+                "expenses": {"info": exp}
+            }
+            self.write_data("database/account.json", new_data)
+        elif cate == "income":
+            data = self.read_data("database/account.json")
+            exp = data["expenses"]["info"]
+            inc = data["income"]["info"]
+            acc = data["account"]["info"]
+            inc = inc.replace(",", "")
+            acc = acc.replace(",", "")
+            amount = amount.replace(",", "")
+            acc = '{:,}'.format(int(int(acc) + int(amount)))
+            inc = '{:,}'.format(int(int(inc) + int(amount)))
+            new_data = {
+                "account": {"info": acc},
+                "income": {"info": inc},
+                "expenses": {"info": exp}
+            }
+            self.write_data("database/account.json", new_data)
+
     def index_fill(self):
         date = self.get_date()
         year, month, day = date.strip().split("-")
@@ -141,6 +177,18 @@ class Database():
             inc = json.load(income)
 
             return inc
+
+    def write_data(self, file_name, data):
+        with open(file_name, "w") as file:
+            data_dump = json.dumps(data, indent=6)
+            file.write(data_dump)
+            file.close()
+
+    def read_data(self, file_name):
+        with open(file_name) as file:
+            data = json.load(file)
+
+            return data
 
     def week_number(self, date):
         if 1 <= date <= 7:
@@ -170,6 +218,5 @@ class Database():
         main = new + old
         return main
 
-
-Database.date_format(Database())
-Database.data_input(Database(), "kitungu", "200", "income", "dog")
+# Database.date_format(Database())
+# Database.data_input(Database(), "kitungu", "200", "income", "dog")

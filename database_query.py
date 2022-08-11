@@ -2,8 +2,6 @@ import json
 
 
 class Database_query:
-    # query data
-    count = 0
 
     def load_query_data(self):
         with open("database/data.json") as file:
@@ -47,9 +45,12 @@ class Database_query:
 
     def count_amount_update(self, name, cate, amount, data):
         qdata = self.load_query_data()
+        amount = amount.replace(",", "")
         get_amount = qdata["data"][cate][name]["total_amount"]
+        get_amount = get_amount.replace(",", "")
         get_count = qdata["data"][cate][name]["count"]
         new_amount = str(int(get_amount) + int(amount))
+        new_amount = '{:,}'.format(int(new_amount))
         new_count = str(int(get_count) + 1)
         data[name]["total_amount"] = new_amount
         data[name]["count"] = new_count
@@ -68,3 +69,12 @@ class Database_query:
                 self.update_name(cate, main_data)
         else:
             self.update_category(data)
+
+    def account_info(self):
+        with open("database/account.json") as file:
+            data = json.load(file)
+            acc = data["account"]["info"]
+            inc = data["income"]["info"]
+            exp = data["expenses"]["info"]
+
+        return [str(acc), str(inc), str(exp)]
