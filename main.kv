@@ -5,6 +5,12 @@ ScreenManager:
     MDScreen:
         name:"username"
         FloatLayout:
+            Image:
+                source:"components/icons/wallets.jpg"
+                pos_hint:{"center_x":.5,"center_y":.85}
+                height: self.texture_size[1]
+                width: self.texture_size[1]
+                size:5,5
             MDLabel:
                 text:"Create Account!"
                 font_style:"H5"
@@ -12,36 +18,36 @@ ScreenManager:
                 theme_text_color:"Custom"
                 font_name:'components/fonts/Gill Sans Bold.otf'
                 text_color:36/255, 146/255, 255/255, 1
-                pos_hint:{"center_x":.5,"center_y":.8}
+                pos_hint:{"center_x":.5,"center_y":.63}
             MDIcon:
                 icon:"numeric-1"
                 halign:"center"
-                pos_hint:{"center_x":.3,"center_y":.73}
+                pos_hint:{"center_x":.3,"center_y":.58}
                 theme_text_color:"Custom"
                 text_color:.5,.5,1,1
                 font_size: dp(50)
             MDIcon:
                 icon:"numeric-2"
                 halign:"center"
-                pos_hint:{"center_x":.5,"center_y":.73}
+                pos_hint:{"center_x":.5,"center_y":.58}
                 theme_text_color:"Custom"
                 text_color:.5,.5,.6,1
                 font_size: dp(30)
             MDIcon:
                 icon:"numeric-3"
                 halign:"center"
-                pos_hint:{"center_x":.7,"center_y":.73}
+                pos_hint:{"center_x":.7,"center_y":.58}
                 theme_text_color:"Custom"
                 text_color:.5,.5,.5,1
                 font_size: dp(30)
             MDSeparator:
-                pos_hint:{"center_x":.5,"center_y":.73}
+                pos_hint:{"center_x":.5,"center_y":.58}
             MDTextField:
                 id:username
                 mode: "rectangle"
                 #fill_color: 0, 0, 0, .4
                 size_hint: .6, .1
-                pos_hint:{'center_x':.5, 'center_y':.58}
+                pos_hint:{'center_x':.5, 'center_y':.45}
                 hint_text:"Username:"
                 #text_color: 1, 1, 1, 1
                 font_size: dp(25)
@@ -49,13 +55,20 @@ ScreenManager:
                 id:usr
                 text: "Next"
                 size_hint: .4, .06
-                pos_hint:{'center_x':.7, 'center_y':.3}
+                pos_hint:{'center_x':.7, 'center_y':.25}
                 md_bg_color: 83 / 225, 186 / 225, 115 / 225, 1
                 on_release:
                     app.username_verify(username.text)
     MDScreen:
         name:"passcode"
+        md_bg_color:1, 1, 1, 1
         FloatLayout:
+            Image:
+                source:"components/icons/lock.png"
+                pos_hint:{"center_x":.5,"center_y":.5}
+                height: self.texture_size[1]
+                width: self.texture_size[1]
+                size:5,5
             MDLabel:
                 text:"Enter pass code"
                 font_style:"H5"
@@ -200,12 +213,12 @@ ScreenManager:
                     manager.current="genesis"
     MDScreen:
         name:"genesis"
-        md_bg_color:211/255, 211/255, 211/255, 1
+        md_bg_color:214/255, 223/255,232/255, 1
         FloatLayout:
             MoneyCard:
                 #md_bg_color:165/255, 184/255, 189/255, 1
                 md_bg_color:36/255, 146/255, 255/255, 1
-                pos_hint:{"center_x":.5, "center_y":.9}
+                pos_hint:{"center_x":.5, "center_y":.933}
                 line_color:0.2, 0.2, 0.2, 0.8
                 FloatLayout:
                     MDLabel:
@@ -213,7 +226,7 @@ ScreenManager:
                         text:app.account_amount
                         theme_text_color:"Custom"
                         text_color:1,1,1,1
-                        font_style:"H4"
+                        font_style:"H5"
                         pos_hint:{"center_x":.5, "center_y":.9}
                         font_name:'components/fonts/Gill Sans.otf'
                     MDSeparator:
@@ -221,19 +234,36 @@ ScreenManager:
                     MDLabel:
                         #halign:"center"
                         theme_text_color:"Custom"
-                        text_color:1,1,1,1
-                        text:"Income: +"+app.income+"/="
+                        text_color:78 / 255, 82 / 255, 84 / 255, 1
+                        text:"Income"
                         font_style:"Body1"
                         font_name:'components/fonts/Gill Sans.otf'
-                        pos_hint:{"center_x":.5, "center_y":.4}
+                        pos_hint:{"center_x":1.15, "center_y":.5}
                     MDLabel:
                         #halign:"center"
                         theme_text_color:"Custom"
-                        text_color:1,1,1,1
-                        text:"Expenses: -"+app.expenses+"/="
+                        text_color:.5,1,.5,1
+                        text:"+"+app.income+"/="
+                        font_style:"H5"
+                        font_name:'components/fonts/Gill Sans.otf'
+                        pos_hint:{"center_x":1.1, "center_y":.1}
+                    MDLabel:
+                        #halign:"center"
+                        theme_text_color:"Custom"
+                        text_color:78 / 255, 82 / 255, 84 / 255, 1
+                        text:"Expenses"
                         font_style:"Body1"
                         font_name:'components/fonts/Gill Sans.otf'
-                        pos_hint:{"center_x":.5, "center_y":.2}
+                        pos_hint:{"center_x":.6, "center_y":.5}
+
+                    MDLabel:
+                        #halign:"center"
+                        theme_text_color:"Custom"
+                        text_color:1,.1,.1,1
+                        text:"-"+app.expenses+"/="
+                        font_style:"H5"
+                        font_name:'components/fonts/Gill Sans.otf'
+                        pos_hint:{"center_x":.6, "center_y":.1}
 
             MDFloatingActionButton:
                 icon:"plus"
@@ -332,9 +362,9 @@ ScreenManager:
     #spacing: "5dp"
     border_radius: 20
     border_color_a: .5
-    radius: [15]
+    radius: [5]
     size_hint: None, None
-    size: app.size_x/1.5, app.size_y/6
+    size: app.size_x/1, app.size_y/8
     focus_behavior: False
     ripple_behavior: False
     elevation: 9
