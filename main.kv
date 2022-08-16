@@ -340,11 +340,12 @@ ScreenManager:
                 icon:"arrow-left"
                 pos_hint:{"center_x":.1,"center_y":.95}
             MDChooseChip:
-                pos_hint:{"center_x":.7,"center_y":.9}
+                pos_hint:{"center_x":.73,"center_y":.9}
                 MDChip:
                     text: 'Matumizi'
                     icon: 'credit-card-minus'
                     color:1,1,1,1
+                    size_hint: .27, .85
                     selected_chip_color: .5,.5,1,1
                     font_name:'components/fonts/Gill Sans.otf'
                     on_release:
@@ -354,6 +355,7 @@ ScreenManager:
                     text: 'Kipato'
                     icon: 'credit-card-plus'
                     color:1,1,1,1
+                    size_hint: .2, .85
                     selected_chip_color: .5,.5,1,1
                     on_release:
                         app.category_sheet(app.kipato)

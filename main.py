@@ -16,6 +16,7 @@ from database import Database as DT
 
 Window.keyboard_anim_args = {"d": .2, "t": "linear"}
 Window.softinput_mode = "below_target"
+Clock.max_iteration = 250
 
 if utils.platform != 'android':
     Window.size = (412, 732)
