@@ -211,67 +211,101 @@ ScreenManager:
                 md_bg_color: 83 / 225, 186 / 225, 115 / 225, 1
                 on_release:
                     manager.current="genesis"
+
+
     MDScreen:
         name:"genesis"
         md_bg_color:214/255, 223/255,232/255, 1
-        FloatLayout:
-            MoneyCard:
-                #md_bg_color:165/255, 184/255, 189/255, 1
-                md_bg_color:36/255, 146/255, 255/255, 1
-                pos_hint:{"center_x":.5, "center_y":.933}
-                line_color:0.2, 0.2, 0.2, 0.8
+        MDBottomNavigation:
+            id:bnav
+            panel_color: 1, 1, 1, 1
+            MDBottomNavigationItem:
+                name: 'home'
+                text: 'Trans.'
+                icon: 'notebook-outline'
                 FloatLayout:
-                    MDLabel:
-                        halign:"center"
-                        text:app.account_amount
-                        theme_text_color:"Custom"
-                        text_color:1,1,1,1
-                        font_style:"H5"
-                        pos_hint:{"center_x":.5, "center_y":.9}
-                        font_name:'components/fonts/Gill Sans.otf'
-                    MDSeparator:
-                        pos_hint:{"center_x":.5, "center_y":.7}
-                    MDLabel:
-                        #halign:"center"
-                        theme_text_color:"Custom"
-                        text_color:78 / 255, 82 / 255, 84 / 255, 1
-                        text:"Income"
-                        font_style:"Body1"
-                        font_name:'components/fonts/Gill Sans.otf'
-                        pos_hint:{"center_x":1.15, "center_y":.5}
-                    MDLabel:
-                        #halign:"center"
-                        theme_text_color:"Custom"
-                        text_color:.5,1,.5,1
-                        text:"+"+app.income+"/="
-                        font_style:"H5"
-                        font_name:'components/fonts/Gill Sans.otf'
-                        pos_hint:{"center_x":1.1, "center_y":.1}
-                    MDLabel:
-                        #halign:"center"
-                        theme_text_color:"Custom"
-                        text_color:78 / 255, 82 / 255, 84 / 255, 1
-                        text:"Expenses"
-                        font_style:"Body1"
-                        font_name:'components/fonts/Gill Sans.otf'
-                        pos_hint:{"center_x":.6, "center_y":.5}
+                    MoneyCard:
+                        #md_bg_color:165/255, 184/255, 189/255, 1
+                        md_bg_color:36/255, 146/255, 255/255, 1
+                        pos_hint:{"center_x":.5, "center_y":.933}
+                        line_color:0.2, 0.2, 0.2, 0.8
+                        FloatLayout:
+                            MDLabel:
+                                halign:"center"
+                                text:app.account_amount
+                                theme_text_color:"Custom"
+                                text_color:1,1,1,1
+                                font_style:"H5"
+                                pos_hint:{"center_x":.5, "center_y":.9}
+                                font_name:'components/fonts/Gill Sans.otf'
+                            MDSeparator:
+                                pos_hint:{"center_x":.5, "center_y":.7}
+                            MDLabel:
+                                #halign:"center"
+                                theme_text_color:"Custom"
+                                text_color:78 / 255, 82 / 255, 84 / 255, 1
+                                text:"Income"
+                                font_style:"Body1"
+                                font_name:'components/fonts/Gill Sans.otf'
+                                pos_hint:{"center_x":1.15, "center_y":.5}
+                            MDLabel:
+                                #halign:"center"
+                                theme_text_color:"Custom"
+                                text_color:.5,1,.5,1
+                                text:"+"+app.income+"/="
+                                font_style:"H5"
+                                font_name:'components/fonts/Gill Sans.otf'
+                                pos_hint:{"center_x":1.1, "center_y":.1}
+                            MDLabel:
+                                #halign:"center"
+                                theme_text_color:"Custom"
+                                text_color:78 / 255, 82 / 255, 84 / 255, 1
+                                text:"Expenses"
+                                font_style:"Body1"
+                                font_name:'components/fonts/Gill Sans.otf'
+                                pos_hint:{"center_x":.6, "center_y":.5}
 
-                    MDLabel:
-                        #halign:"center"
-                        theme_text_color:"Custom"
-                        text_color:1,.1,.1,1
-                        text:"-"+app.expenses+"/="
-                        font_style:"H5"
-                        font_name:'components/fonts/Gill Sans.otf'
-                        pos_hint:{"center_x":.6, "center_y":.1}
+                            MDLabel:
+                                #halign:"center"
+                                theme_text_color:"Custom"
+                                text_color:1,.1,.1,1
+                                text:"-"+app.expenses+"/="
+                                font_style:"H5"
+                                font_name:'components/fonts/Gill Sans.otf'
+                                pos_hint:{"center_x":.6, "center_y":.1}
 
-            MDFloatingActionButton:
-                icon:"plus"
-                id:plus
-                pos_hint:{"center_x":.84,"center_y":.14}
-                md_bg_color:36/255, 146/255, 255/255, 1
-                on_release:
-                    app.screen_capture("Add_data")
+                    MDFloatingActionButton:
+                        icon:"plus"
+                        id:plus
+                        pos_hint:{"center_x":.84,"center_y":.14}
+                        md_bg_color:36/255, 146/255, 255/255, 1
+                        on_release:
+                            app.screen_capture("Add_data")
+
+            MDBottomNavigationItem:
+                name: 'stats'
+                text: 'Stats'
+                icon: 'chart-line'
+                MDBoxLayout:
+                    MDLabel:
+                        text:"hello 1"
+
+            MDBottomNavigationItem:
+                name: 'accounts'
+                text: 'Accounts'
+                icon: 'bank'
+                MDBoxLayout:
+                    MDLabel:
+                        text:"hello 2"
+
+            MDBottomNavigationItem:
+                name: 'more'
+                text: 'More'
+                icon: 'dots-horizontal'
+                MDBoxLayout:
+                    MDLabel:
+                        text:"hello 2"
+
     MDScreen:
         name:"Add_data"
         #md_bg_color:211/255, 211/255, 211/255, 1
