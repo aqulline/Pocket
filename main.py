@@ -56,6 +56,11 @@ class MainApp(MDApp):
     date = StringProperty(DT.get_date(DT()))
     date_frm = StringProperty(DT.date_format(DT()))
 
+    # progressbar values
+    percentage = StringProperty("")
+    amount_per = NumericProperty(0)
+    exp_perc = NumericProperty(0)
+
     # ACCOUNT VARS
     user_name = StringProperty("")
     passcode = StringProperty("")
@@ -217,6 +222,14 @@ class MainApp(MDApp):
                 self.dummy_amount += num
                 self.amount = '{:,}'.format(int(self.dummy_amount))
 
+    def perc_update(self):
+        exp = int(self.expenses.replace(",", ""))
+        acc = int(self.account_amount.replace(",", ""))
+        self.exp_perc = exp
+        self.amount_per = acc
+        percentage = (int(exp) * 100) / int(acc)
+        self.percentage = "{:.1f}".format(percentage)
+
     def back_space(self):
         self.dummy_amount = self.amount.replace(",", "")
         leng = len(self.dummy_amount) - 1
@@ -255,8 +268,6 @@ class MainApp(MDApp):
     def data_container(self, name, amount, cate, icon):
         DT.data_input(DT(), name, amount, cate, icon)
 
-
-
     """
         End of Data Inputs Functions
     """
@@ -273,6 +284,7 @@ class MainApp(MDApp):
         inc = self.income.replace(",", "")
         exp = self.expenses.replace(",", "")
         acc = int(inc) - int(exp)
+        self.perc_update()
         if acc > 0:
             self.account_amount = f"+{self.account_amount}/="
         elif acc < 0:
@@ -281,6 +293,7 @@ class MainApp(MDApp):
             self.account_amount = f"{self.account_amount}/="
 
     def refresh(self):
+        self.perc_update()
         self.account_amount = DQ.account_info(DQ())[0]
         self.income = DQ.account_info(DQ())[1]
         self.expenses = DQ.account_info(DQ())[2]

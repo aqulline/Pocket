@@ -236,10 +236,10 @@ ScreenManager:
                                 theme_text_color:"Custom"
                                 text_color:1,1,1,1
                                 font_style:"H5"
-                                pos_hint:{"center_x":.5, "center_y":.9}
+                                pos_hint:{"center_x":.5, "center_y":.78}
                                 font_name:'components/fonts/Gill Sans.otf'
                             MDSeparator:
-                                pos_hint:{"center_x":.5, "center_y":.7}
+                                pos_hint:{"center_x":.5, "center_y":.59}
                             MDLabel:
                                 #halign:"center"
                                 theme_text_color:"Custom"
@@ -247,11 +247,11 @@ ScreenManager:
                                 text:"Income"
                                 font_style:"Body1"
                                 font_name:'components/fonts/Gill Sans.otf'
-                                pos_hint:{"center_x":1.15, "center_y":.5}
+                                pos_hint:{"center_x":1.15, "center_y":.4}
                             MDLabel:
                                 #halign:"center"
                                 theme_text_color:"Custom"
-                                text_color:.5,1,.5,1
+                                text_color:.8, 1, .8, 1
                                 text:"+"+app.income+"/="
                                 font_style:"H5"
                                 font_name:'components/fonts/Gill Sans.otf'
@@ -263,16 +263,31 @@ ScreenManager:
                                 text:"Expenses"
                                 font_style:"Body1"
                                 font_name:'components/fonts/Gill Sans.otf'
-                                pos_hint:{"center_x":.6, "center_y":.5}
-
+                                pos_hint:{"center_x":.6, "center_y":.4}
                             MDLabel:
                                 #halign:"center"
                                 theme_text_color:"Custom"
-                                text_color:1,.1,.1,1
+                                text_color:1, .8, .8, 1
                                 text:"-"+app.expenses+"/="
                                 font_style:"H5"
                                 font_name:'components/fonts/Gill Sans.otf'
                                 pos_hint:{"center_x":.6, "center_y":.1}
+                    MDProgressBar:
+                        id: progress
+                        pos_hint: {"center_y": .83}
+                        type: "indeterminate"
+                        color:36/255, 146/255, 255/255, 1
+                        size: .1, .1
+                        max:app.amount_per
+                        value:app.exp_perc
+                    MDLabel:
+                        #halign:"center"
+                        theme_text_color:"Custom"
+                        text_color:78 / 255, 82 / 255, 84 / 255, 1
+                        text:app.percentage+"% of amount"
+                        halign:"center"
+                        font_style:"Caption"
+                        pos_hint:{"center_x":.15, "center_y":.81}
 
                     MDFloatingActionButton:
                         icon:"plus"
@@ -398,7 +413,7 @@ ScreenManager:
     border_color_a: .5
     radius: [5]
     size_hint: None, None
-    size: app.size_x/1, app.size_y/8
+    size: app.size_x/1, app.size_y/6
     focus_behavior: False
     ripple_behavior: False
     elevation: 9
