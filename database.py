@@ -67,6 +67,33 @@ class Database():
             initial_data = json.load(file)
         return initial_data
 
+    def load_today(self):
+        self.index_fill()
+        exp_data = self.read_data("database/expense.json")
+        exp_main = exp_data["data"]["202208"]["w1"]["20220804"]
+        inc_data = self.read_data("database/income.json")
+        inc_main = inc_data["data"]["202208"]["w1"]["20220804"]
+        all_data = {**exp_main, **inc_main}
+        all_data = dict(sorted(all_data.items()))
+        return all_data
+
+    def today_total(self):
+        self.index_fill()
+        exp_data = self.read_data("database/expense.json")
+        exp_main = exp_data["data"]["202208"]["w1"]["20220804"]
+        inc_data = self.read_data("database/income.json")
+        inc_main = inc_data["data"]["202208"]["w1"]["20220804"]
+        all_data = {**exp_main, **inc_main}
+        all_data = dict(sorted(all_data.items()))
+        exp = 0
+        inc = 0
+        for i, y in all_data.items():
+            if y["category"] == "expenses":
+                exp = exp + int(y["amount"].replace(",", ""))
+            else:
+                inc = inc + int(y["amount"].replace(",", ""))
+        return [exp, inc]
+
     def update_month(self, month):
         initial_data = self.load()
         final_data = month
@@ -157,6 +184,8 @@ class Database():
             }
             self.write_data("database/account.json", new_data)
 
+    # main = data["data"]["20208"]["w12"][i]
+
     def index_fill(self):
         date = self.get_date()
         year, month, day = date.strip().split("-")
@@ -185,7 +214,7 @@ class Database():
             file.close()
 
     def read_data(self, file_name):
-        with open(file_name) as file:
+        with open(file_name, "r") as file:
             data = json.load(file)
 
             return data
@@ -218,5 +247,7 @@ class Database():
         main = new + old
         return main
 
+
 # Database.date_format(Database())
 # Database.data_input(Database(), "kitungu", "200", "income", "dog")
+# Database.today_total(Database())

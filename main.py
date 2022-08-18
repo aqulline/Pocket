@@ -9,6 +9,7 @@ from kivy import utils
 from kivy.base import EventLoop
 from kivymd.toast import toast
 from kivymd.uix.bottomsheet import MDListBottomSheet
+from kivymd.uix.card import MDCard
 from kivymd.uix.textfield import MDTextField
 
 from database_query import Database_query as DQ
@@ -20,6 +21,25 @@ Clock.max_iteration = 250
 
 if utils.platform != 'android':
     Window.size = (412, 732)
+
+
+class More(MDCard):
+    icon = StringProperty("")
+
+
+class RowCard(MDCard):
+    date = StringProperty("")
+    icon = StringProperty("")
+    cate = StringProperty("")
+    name = StringProperty("")
+    price = StringProperty("")
+
+    def price_symb(self, cat, prc):
+        if cat == "expenses":
+            self.price = "-" + prc + "/="
+        else:
+            self.price = "+" + prc + "/="
+        return self.price
 
 
 class NumberOnlyField(MDTextField):
@@ -56,6 +76,8 @@ class MainApp(MDApp):
     kipato = DictProperty(DT.inc_list(DT()))
     date = StringProperty(DT.get_date(DT()))
     date_frm = StringProperty(DT.date_format(DT()))
+    td_exp = StringProperty("0")
+    td_inc = StringProperty("0")
 
     # progressbar values
     percentage = StringProperty("")
@@ -92,11 +114,12 @@ class MainApp(MDApp):
 
     def register_check(self):
         file_size = os.path.getsize("database/user.json")
-        self.symbol_calc()
         if file_size == 0:
             self.sm.current = "username"
         else:
             self.sm.current = "login"
+            self.add_item()
+            self.symbol_calc()
 
     def login_auto(self):
         cd = self.root.ids.lgn_code
@@ -209,6 +232,48 @@ class MainApp(MDApp):
     End of Screen Functions
     
     """
+
+    """
+                    DATA VIEW FUNCTION
+    """
+
+    # small vars
+    counter = 0
+    count = 0
+
+    def add_item(self):
+        main = DT.load_today(DT())
+        exp_temp, inc_temp = DT.today_total(DT())
+        self.td_exp = '{:,}'.format(int(exp_temp))
+        self.td_inc = '{:,}'.format(int(inc_temp))
+        for i, y in main.items():
+            if self.counter < 9:
+                self.root.ids.customers.data.append(
+                    {
+                        "viewclass": "RowCard",
+                        "icon": y["icon"],
+                        "name": y["name"],
+                        "cate": y["category"],
+                        "date": y["date"],
+                        "price": RowCard.price_symb(RowCard(), y["category"], y["amount"]),
+                        "id": i
+                    }
+                )
+            else:
+                if self.count == 0:
+                    self.root.ids.customers.data.append(
+                        {
+                            "viewclass": "More",
+                            "icon": "dots-horizontal"
+                        }
+                    )
+                    self.count = + 1
+            self.counter = self.counter + 1
+
+    """
+                    END OF DATA VIEW FUNCTION
+    """
+
     """
             Down here Stays Data inputs Functions
     """
