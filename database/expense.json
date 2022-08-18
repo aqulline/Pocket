@@ -106,6 +106,13 @@
                         "category": "expenses",
                         "icon": "food",
                         "date": "2022-08-18"
+                    },
+                    "20220818123846692713": {
+                        "name": "Beer",
+                        "amount": "2,000",
+                        "category": "expenses",
+                        "icon": "bottle-soda",
+                        "date": "2022-08-18"
                     }
                 }
             }

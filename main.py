@@ -242,11 +242,14 @@ class MainApp(MDApp):
     counter = 0
     count = 0
 
-    def add_item(self):
-        main = DT.load_today(DT())
+    def today_exp_inc(self):
         exp_temp, inc_temp = DT.today_total(DT())
         self.td_exp = '{:,}'.format(int(exp_temp))
         self.td_inc = '{:,}'.format(int(inc_temp))
+
+    def add_item(self):
+        main = DT.load_today(DT())
+        self.today_exp_inc()
         for i, y in main.items():
             if self.counter < 9:
                 self.root.ids.customers.data.append(
@@ -270,6 +273,35 @@ class MainApp(MDApp):
                     )
                     self.count = + 1
             self.counter = self.counter + 1
+
+    data_count = 0
+
+    def update_items(self):
+        datas = self.root.ids.customers.data
+        datas_size = len(datas)
+        if datas_size >= 9:
+            print("fuck you")
+            if self.data_count == 0:
+                self.root.ids.customers.data.append(
+                    {
+                        "viewclass": "More",
+                        "icon": "dots-horizontal"
+                    }
+                )
+                self.data_count = + 1
+        else:
+            self.update_item()
+
+    def update_item(self):
+        self.root.ids.customers.data.append(
+            {
+                "viewclass": "RowCard",
+                "icon": self.data_icon,
+                "name": self.data_name,
+                "cate": self.category,
+                "price": RowCard.price_symb(RowCard(), self.category, self.amount)
+            }
+        )
 
     """
                     END OF DATA VIEW FUNCTION
@@ -330,10 +362,11 @@ class MainApp(MDApp):
 
     def container_maker(self):
         self.data_container(self.data_name, self.amount, self.category, self.data_icon)
-        self.refresh()
 
     def data_container(self, name, amount, cate, icon):
         DT.data_input(DT(), name, amount, cate, icon)
+        self.update_items()
+        self.refresh()
 
     """
         End of Data Inputs Functions
@@ -364,6 +397,7 @@ class MainApp(MDApp):
         self.account_amount = DQ.account_info(DQ())[0]
         self.income = DQ.account_info(DQ())[1]
         self.expenses = DQ.account_info(DQ())[2]
+        self.today_exp_inc()
         self.symbol_calc()
 
     """

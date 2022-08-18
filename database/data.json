@@ -68,12 +68,12 @@
                 "date": "2022-08-04"
             },
             "Beer": {
-                "count": "1",
+                "count": "2",
                 "name": "Beer",
-                "total_amount": "2,500",
+                "total_amount": "4,500",
                 "category": "expenses",
                 "icon": "bottle-soda",
-                "date": "2022-08-05"
+                "date": "2022-08-18"
             }
         }
     }

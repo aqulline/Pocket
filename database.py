@@ -70,9 +70,9 @@ class Database():
     def load_today(self):
         self.index_fill()
         exp_data = self.read_data("database/expense.json")
-        exp_main = exp_data["data"]["202208"]["w1"]["20220804"]
+        exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
         inc_data = self.read_data("database/income.json")
-        inc_main = inc_data["data"]["202208"]["w1"]["20220804"]
+        inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
         all_data = {**exp_main, **inc_main}
         all_data = dict(sorted(all_data.items()))
         return all_data
@@ -80,9 +80,9 @@ class Database():
     def today_total(self):
         self.index_fill()
         exp_data = self.read_data("database/expense.json")
-        exp_main = exp_data["data"]["202208"]["w1"]["20220804"]
+        exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
         inc_data = self.read_data("database/income.json")
-        inc_main = inc_data["data"]["202208"]["w1"]["20220804"]
+        inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
         all_data = {**exp_main, **inc_main}
         all_data = dict(sorted(all_data.items()))
         exp = 0
