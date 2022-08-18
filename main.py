@@ -95,6 +95,7 @@ class MainApp(MDApp):
     # DUMMY VARS
     dummy_cash = StringProperty("0")
     dummy_amount = StringProperty("0")
+    dummy_account_amount = StringProperty("0")
 
     def on_start(self):
         self.sm = self.root
@@ -352,11 +353,11 @@ class MainApp(MDApp):
         acc = int(inc) - int(exp)
         self.perc_update()
         if acc > 0:
-            self.account_amount = f"+{self.account_amount}/="
+            self.dummy_account_amount = f"+{self.account_amount}/="
         elif acc < 0:
-            self.account_amount = f"-{self.account_amount}/="
+            self.dummy_account_amount = f"-{self.account_amount}/="
         else:
-            self.account_amount = f"{self.account_amount}/="
+            self.dummy_account_amount = f"{self.account_amount}/="
 
     def refresh(self):
         self.perc_update()

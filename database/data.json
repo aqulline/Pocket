@@ -2,12 +2,12 @@
     "data": {
         "income": {
             "Boom": {
-                "count": "1",
+                "count": "2",
                 "name": "Boom",
-                "total_amount": "500,000",
+                "total_amount": "505,000",
                 "category": "income",
                 "icon": "credit-card-scan",
-                "date": "2022-08-04"
+                "date": "2022-08-18"
             },
             "Wazazi": {
                 "count": "1",
@@ -44,12 +44,12 @@
                 "date": "2022-08-04"
             },
             "Chakula": {
-                "count": "4",
+                "count": "5",
                 "name": "Chakula",
-                "total_amount": "8,500",
+                "total_amount": "13,500",
                 "category": "expenses",
                 "icon": "food",
-                "date": "2022-08-04"
+                "date": "2022-08-18"
             },
             "Vocha": {
                 "count": "1",
