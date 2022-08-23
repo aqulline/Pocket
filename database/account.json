@@ -1,11 +1,41 @@
 {
       "account": {
-            "info": "479,200"
+            "info": "472,200"
       },
       "income": {
             "info": "510,000"
       },
       "expenses": {
-            "info": "30,800"
+            "info": "37,800"
+      },
+      "airtel": {
+            "info": "20,000",
+            "income": "200",
+            "expenses": "2000"
+      },
+      "voda": {
+            "info": "20,000",
+            "income": "200",
+            "expenses": "2000"
+      },
+      "tigo": {
+            "info": "20,000",
+            "income": "200",
+            "expenses": "2000"
+      },
+      "halotel": {
+            "info": "20,000",
+            "income": "200",
+            "expenses": "2000"
+      },
+      "nmb": {
+            "info": "20,000",
+            "income": "200",
+            "expenses": "2000"
+      },
+      "crdb": {
+            "info": "20,000",
+            "income": "200",
+            "expenses": "2000"
       }
 }

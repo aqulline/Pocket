@@ -70,29 +70,65 @@ class Database():
     def load_today(self):
         self.index_fill()
         exp_data = self.read_data("database/expense.json")
-        exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
         inc_data = self.read_data("database/income.json")
-        inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
-        all_data = {**exp_main, **inc_main}
-        all_data = dict(sorted(all_data.items()))
-        return all_data
+        if self.week_no in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
+            exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+            inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
+            all_data = {**exp_main, **inc_main}
+            all_data = dict(sorted(all_data.items()))
+            return all_data
+        elif self.week_no in exp_data["data"][self.year_id] and self.week_no not in inc_data["data"][self.year_id]:
+            exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+            all_data = exp_main
+            all_data = dict(sorted(all_data.items()))
+            return all_data
+        elif self.week_no not in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
+            inc_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+            all_data = inc_main
+            all_data = dict(sorted(all_data.items()))
+            return all_data
+        else:
+            pass
 
     def today_total(self):
         self.index_fill()
         exp_data = self.read_data("database/expense.json")
-        exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
         inc_data = self.read_data("database/income.json")
-        inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
-        all_data = {**exp_main, **inc_main}
-        all_data = dict(sorted(all_data.items()))
-        exp = 0
-        inc = 0
-        for i, y in all_data.items():
-            if y["category"] == "expenses":
-                exp = exp + int(y["amount"].replace(",", ""))
-            else:
-                inc = inc + int(y["amount"].replace(",", ""))
-        return [exp, inc]
+        if self.week_no in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
+            exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+            inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
+            all_data = {**exp_main, **inc_main}
+            all_data = dict(sorted(all_data.items()))
+            exp = 0
+            inc = 0
+            for i, y in all_data.items():
+                if y["category"] == "expenses":
+                    exp = exp + int(y["amount"].replace(",", ""))
+                else:
+                    inc = inc + int(y["amount"].replace(",", ""))
+            return [exp, inc]
+        elif self.week_no in exp_data["data"][self.year_id] and self.week_no not in inc_data["data"][self.year_id]:
+            exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+            all_data = exp_main
+            all_data = dict(sorted(all_data.items()))
+            exp = 0
+            inc = 0
+            for i, y in all_data.items():
+                if y["category"] == "expenses":
+                    exp = exp + int(y["amount"].replace(",", ""))
+                return [exp, inc]
+        elif self.week_no not in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
+            inc_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+            all_data = inc_main
+            all_data = dict(sorted(all_data.items()))
+            exp = 0
+            inc = 0
+            for i, y in all_data.items():
+                if y["category"] == "expenses":
+                    inc = inc + int(y["amount"].replace(",", ""))
+                return [exp, inc]
+        else:
+            return []
 
     def update_month(self, month):
         initial_data = self.load()

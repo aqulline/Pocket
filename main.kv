@@ -329,9 +329,51 @@ ScreenManager:
                 name: 'accounts'
                 text: 'Accounts'
                 icon: 'bank'
-                MDBoxLayout:
+                FloatLayout:
                     MDLabel:
-                        text:"hello 2"
+                        adaptive_height:True
+                        halign:"center"
+                        pos_hint:{"center_x":.2, "center_y":.95}
+                        bold:True
+                        text:"Accounts"
+                        font_style:"H5"
+                        font_name:'components/fonts/Gill Sans.otf'
+                    MDLabel:
+                        adaptive_height:True
+                        halign:"center"
+                        pos_hint:{"center_x":.15, "center_y":.85}
+                        text:"Cash"
+                        font_style:"Body1"
+                        font_name:'components/fonts/Gill Sans.otf'
+                    CashCard:
+                        pos_hint:{"center_x":.5, "center_y":.7}
+                        FloatLayout:
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.8, "center_y":.6}
+                                text:"5,000,000"
+                                theme_text_color:"Custom"
+                                text_color:1, 1, 1, 1
+                                font_style:"H4"
+                                font_name:'components/fonts/Gill Sans.otf'
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.8, "center_y":.3}
+                                text:"Cash Account"
+                                font_style:"H6"
+                                theme_text_color:"Custom"
+                                text_color:1, 1, 1, 1
+                                font_name:'components/fonts/Gill Sans.otf'
+                    MDLabel:
+                        adaptive_height:True
+                        halign:"center"
+                        pos_hint:{"center_x":.15, "center_y":.5}
+                        text:"Cash"
+                        font_style:"Body1"
+                        font_name:'components/fonts/Gill Sans.otf'
+
 
             MDBottomNavigationItem:
                 name: 'more'
@@ -412,6 +454,21 @@ ScreenManager:
             Keyboard:
                 pos_hint:{"center_x":.5,"center_y":.2}
 
+
+<CashCard@MDCard>:
+    orientation: "vertical"
+    md_bg_color: .5, .2, .4, 1
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 20
+    radius:10
+    border_color_a: .5
+    radius: [5]
+    size_hint: None, None
+    size: app.size_x/1.1, app.size_y/5
+    focus_behavior: False
+    ripple_behavior: False
+    elevation: 9
 
 <Deco@MDCard>:
     orientation: "vertical"

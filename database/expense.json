@@ -115,6 +115,24 @@
                         "date": "2022-08-18"
                     }
                 }
+            },
+            "w4": {
+                "20220822": {
+                    "20220822115512114387": {
+                        "name": "Beer",
+                        "amount": "5,000",
+                        "category": "expenses",
+                        "icon": "bottle-soda",
+                        "date": "2022-08-22"
+                    },
+                    "20220822122505149975": {
+                        "name": "Chakula",
+                        "amount": "2,000",
+                        "category": "expenses",
+                        "icon": "food",
+                        "date": "2022-08-22"
+                    }
+                }
             }
         }
     }

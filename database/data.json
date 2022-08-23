@@ -44,12 +44,12 @@
                 "date": "2022-08-04"
             },
             "Chakula": {
-                "count": "5",
+                "count": "6",
                 "name": "Chakula",
-                "total_amount": "13,500",
+                "total_amount": "15,500",
                 "category": "expenses",
                 "icon": "food",
-                "date": "2022-08-18"
+                "date": "2022-08-22"
             },
             "Vocha": {
                 "count": "1",
@@ -68,12 +68,12 @@
                 "date": "2022-08-04"
             },
             "Beer": {
-                "count": "2",
+                "count": "3",
                 "name": "Beer",
-                "total_amount": "4,500",
+                "total_amount": "9,500",
                 "category": "expenses",
                 "icon": "bottle-soda",
-                "date": "2022-08-18"
+                "date": "2022-08-22"
             }
         }
     }

@@ -1,5 +1,6 @@
 import os
 import re
+import threading
 
 from kivy.clock import Clock
 from kivy.properties import StringProperty, ObjectProperty, NumericProperty, DictProperty, ListProperty
@@ -119,8 +120,7 @@ class MainApp(MDApp):
             self.sm.current = "username"
         else:
             self.sm.current = "login"
-            self.add_item()
-            self.symbol_calc()
+            Clock.schedule_once(lambda x: self.add_item(), 2)
 
     def login_auto(self):
         cd = self.root.ids.lgn_code
@@ -243,36 +243,40 @@ class MainApp(MDApp):
     count = 0
 
     def today_exp_inc(self):
-        exp_temp, inc_temp = DT.today_total(DT())
-        self.td_exp = '{:,}'.format(int(exp_temp))
-        self.td_inc = '{:,}'.format(int(inc_temp))
+        if DT.today_total(DT()):
+            exp_temp, inc_temp = DT.today_total(DT())
+            self.td_exp = '{:,}'.format(int(exp_temp))
+            self.td_inc = '{:,}'.format(int(inc_temp))
 
     def add_item(self):
+        self.symbol_calc()
         main = DT.load_today(DT())
-        self.today_exp_inc()
-        for i, y in main.items():
-            if self.counter < 9:
-                self.root.ids.customers.data.append(
-                    {
-                        "viewclass": "RowCard",
-                        "icon": y["icon"],
-                        "name": y["name"],
-                        "cate": y["category"],
-                        "date": y["date"],
-                        "price": RowCard.price_symb(RowCard(), y["category"], y["amount"]),
-                        "id": i
-                    }
-                )
-            else:
-                if self.count == 0:
+
+        if main:
+            self.today_exp_inc()
+            for i, y in main.items():
+                if self.counter < 9:
                     self.root.ids.customers.data.append(
                         {
-                            "viewclass": "More",
-                            "icon": "dots-horizontal"
+                            "viewclass": "RowCard",
+                            "icon": y["icon"],
+                            "name": y["name"],
+                            "cate": y["category"],
+                            "date": y["date"],
+                            "price": RowCard.price_symb(RowCard(), y["category"], y["amount"]),
+                            "id": i
                         }
                     )
-                    self.count = + 1
-            self.counter = self.counter + 1
+                else:
+                    if self.count == 0:
+                        self.root.ids.customers.data.append(
+                            {
+                                "viewclass": "More",
+                                "icon": "dots-horizontal"
+                            }
+                        )
+                        self.count = + 1
+                self.counter = self.counter + 1
 
     data_count = 0
 
@@ -290,7 +294,10 @@ class MainApp(MDApp):
                 )
                 self.data_count = + 1
         else:
-            self.update_item()
+            try:
+                self.update_item()
+            except:
+                pass
 
     def update_item(self):
         self.root.ids.customers.data.append(
