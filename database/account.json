@@ -1,12 +1,12 @@
 {
       "account": {
-            "info": "472,200"
+            "info": "462,200"
       },
       "income": {
             "info": "510,000"
       },
       "expenses": {
-            "info": "37,800"
+            "info": "47,800"
       },
       "airtel": {
             "info": "20,000",
@@ -24,7 +24,7 @@
             "expenses": "2000"
       },
       "halotel": {
-            "info": "20,000",
+            "info": "890",
             "income": "200",
             "expenses": "2000"
       },

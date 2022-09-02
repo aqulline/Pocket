@@ -132,6 +132,35 @@
                         "icon": "food",
                         "date": "2022-08-22"
                     }
+                },
+                "20220830": {
+                    "20220830163044369484": {
+                        "name": "Chakula",
+                        "amount": "25,000",
+                        "category": "expenses",
+                        "icon": "food",
+                        "date": "2022-08-30"
+                    },
+                    "20220830163656255267": {
+                        "name": "Perfume",
+                        "amount": "5,000",
+                        "category": "expenses",
+                        "icon": "air-filter",
+                        "date": "2022-08-30"
+                    }
+                }
+            }
+        },
+        "202209": {
+            "w1": {
+                "20220902": {
+                    "20220902135306458447": {
+                        "name": "Chakula",
+                        "amount": "5,000",
+                        "category": "expenses",
+                        "icon": "food",
+                        "date": "2022-09-02"
+                    }
                 }
             }
         }

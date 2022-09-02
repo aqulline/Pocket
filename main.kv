@@ -224,6 +224,10 @@ ScreenManager:
                 text: 'Trans.'
                 icon: 'notebook-outline'
                 FloatLayout:
+                    Image:
+                        id:nodata
+                        pos_hint:{"center_x":.5, "center_y":.4}
+                        size: 700, 700
                     MoneyCard:
                         #md_bg_color:165/255, 184/255, 189/255, 1
                         md_bg_color:36/255, 146/255, 255/255, 1
@@ -343,16 +347,18 @@ ScreenManager:
                         halign:"center"
                         pos_hint:{"center_x":.15, "center_y":.85}
                         text:"Cash"
-                        font_style:"Body1"
+                        font_style:"H6"
                         font_name:'components/fonts/Gill Sans.otf'
                     CashCard:
                         pos_hint:{"center_x":.5, "center_y":.7}
+                        on_release:
+                            app.screen_capture("Add_data")
                         FloatLayout:
                             MDLabel:
                                 adaptive_height:True
                                 halign:"center"
-                                pos_hint:{"center_x":.8, "center_y":.6}
-                                text:"5,000,000"
+                                pos_hint:{"center_x":.75, "center_y":.6}
+                                text:app.dummy_account_amount
                                 theme_text_color:"Custom"
                                 text_color:1, 1, 1, 1
                                 font_style:"H4"
@@ -369,10 +375,119 @@ ScreenManager:
                     MDLabel:
                         adaptive_height:True
                         halign:"center"
-                        pos_hint:{"center_x":.15, "center_y":.5}
-                        text:"Cash"
-                        font_style:"Body1"
+                        pos_hint:{"center_x":.2, "center_y":.53}
+                        text:"Mobile Wallets"
+                        #font_size:"20dp"
+                        font_style:"H6"
                         font_name:'components/fonts/Gill Sans.otf'
+                    MobileCard:
+                        md_bg_color: 255/255, 142/255, 135/255, 1
+                        pos_hint:{"center_x":.23, "center_y":.4}
+                        on_release:
+                            app.wallet_name = "Mpesa"
+                            app.wallet_color = [255/255, 142/255, 135/255, 1]
+                            app.phone_verfy_dialog()
+                        FloatLayout:
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.7, "center_y":.6}
+                                text:app.mpesa+"/="
+                                theme_text_color:"Custom"
+                                font_size:"20dp"
+                                text_color:1, 1, 1, 1
+                                #font_style:"H4"
+                                font_name:'components/fonts/Gill Sans Bold.otf'
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.7, "center_y":.3}
+                                text:"MPesa"
+                                font_size:"20dp"
+                                theme_text_color:"Custom"
+                                text_color:1, 1, 1, 1
+                                font_name:'components/fonts/Gill Sans Bold.otf'
+                    MobileCard:
+                        md_bg_color: 135/255, 142/255, 255/255, 1
+                        pos_hint:{"center_x":.73, "center_y":.4}
+                        on_release:
+                            app.wallet_name = "Tigopesa"
+                            app.wallet_color = [135/255, 142/255, 255/255, 1]
+                            app.phone_verfy_dialog()
+                        FloatLayout:
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.7, "center_y":.6}
+                                text:app.tigo+"/="
+                                theme_text_color:"Custom"
+                                font_size:"20dp"
+                                text_color:1, 1, 1, 1
+                                #font_style:"H4"
+                                font_name:'components/fonts/Gill Sans Bold.otf'
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.7, "center_y":.3}
+                                text:"tigopesa"
+                                font_size:"20dp"
+                                theme_text_color:"Custom"
+                                text_color:1, 1, 1, 1
+                                font_name:'components/fonts/Gill Sans Bold.otf'
+                    MobileCard:
+                        md_bg_color: 255/255, 174/255, 115/255, 1
+                        pos_hint:{"center_x":.23, "center_y":.23}
+                        on_release:
+                            app.wallet_name = "Halotel"
+                            app.wallet_color = [255/255, 174/255, 115/255, 1]
+                            app.phone_verfy_dialog()
+                        FloatLayout:
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.7, "center_y":.6}
+                                text:app.halotel+"/="
+                                theme_text_color:"Custom"
+                                font_size:"20dp"
+                                text_color:1, 1, 1, 1
+                                #font_style:"H4"
+                                font_name:'components/fonts/Gill Sans Bold.otf'
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.7, "center_y":.3}
+                                text:"Halo Pesa"
+                                font_size:"20dp"
+                                theme_text_color:"Custom"
+                                text_color:1, 1, 1, 1
+                                font_name:'components/fonts/Gill Sans Bold.otf'
+                    MobileCard:
+                        md_bg_color: 226/255, 109/255, 108/255, 1
+                        pos_hint:{"center_x":.73, "center_y":.23}
+                        on_release:
+                            app.wallet_name = "Airtel"
+                            app.wallet_color = [226/255, 109/255, 108/255, 1]
+                            app.phone_verfy_dialog()
+                        FloatLayout:
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.7, "center_y":.6}
+                                text:app.airtel+"/="
+                                theme_text_color:"Custom"
+                                font_size:"20dp"
+                                text_color:1, 1, 1, 1
+                                #font_style:"H4"
+                                font_name:'components/fonts/Gill Sans Bold.otf'
+                            MDLabel:
+                                adaptive_height:True
+                                halign:"center"
+                                pos_hint:{"center_x":.6, "center_y":.3}
+                                text:"airtel money"
+                                font_size:"20dp"
+                                theme_text_color:"Custom"
+                                text_color:1, 1, 1, 1
+                                font_name:'components/fonts/Gill Sans Bold.otf'
 
 
             MDBottomNavigationItem:
@@ -399,8 +514,10 @@ ScreenManager:
                 pos_hint:{"center_x":.5,"center_y":.97}
                 font_name:'components/fonts/Gill Sans.otf'
             MDIconButton:
-                icon:"arrow-left"
+                icon:"chevron-left"
                 pos_hint:{"center_x":.1,"center_y":.95}
+                on_release:
+                    app.screen_leave()
             MDChooseChip:
                 pos_hint:{"center_x":.73,"center_y":.9}
                 MDChip:
@@ -457,7 +574,7 @@ ScreenManager:
 
 <CashCard@MDCard>:
     orientation: "vertical"
-    md_bg_color: .5, .2, .4, 1
+    md_bg_color: 36/255, 146/255, 255/255, 1
     padding: "10dp"
     #spacing: "5dp"
     border_radius: 20
@@ -466,6 +583,20 @@ ScreenManager:
     radius: [5]
     size_hint: None, None
     size: app.size_x/1.1, app.size_y/5
+    focus_behavior: False
+    ripple_behavior: False
+    elevation: 9
+
+<MobileCard@MDCard>:
+    orientation: "vertical"
+    padding: "10dp"
+    #spacing: "5dp"
+    border_radius: 20
+    radius:10
+    border_color_a: .5
+    radius: [5]
+    size_hint: None, None
+    size: app.size_x/2.3, app.size_y/7
     focus_behavior: False
     ripple_behavior: False
     elevation: 9
@@ -633,7 +764,7 @@ ScreenManager:
             font_name: "components/fonts/Gill Sans Bold.otf"
             pos_hint:{'center_x':.85, 'center_y':.4}
             on_release:
-                app.amount_update("1")
+                app.amount_update("3")
         MDRaisedButton:
             text: "000"
             size_hint: .3, .2
@@ -755,3 +886,19 @@ ScreenManager:
         icon:root.icon
         halign:"center"
         font_size:"35sp"
+
+<Wallet>:
+    orientation:"vertical"
+    #adaptive_height:True
+    spacing: dp(100)
+    NumberOnlyField:
+        id:amnt
+        mode: "rectangle"
+        input_type:"number"
+        size_hint: .5, .3
+        hint_text:root.name
+        line_color_focus:app.wallet_color
+        on_text:
+            app.w_amount = amnt.text
+        #pos_hint:{'center_x':.5, 'center_y':.6}
+        #font_size: dp(50)

@@ -20,12 +20,12 @@
         },
         "expenses": {
             "Perfume": {
-                "count": "1",
+                "count": "2",
                 "name": "Perfume",
-                "total_amount": "5,000",
+                "total_amount": "10,000",
                 "category": "expenses",
                 "icon": "air-filter",
-                "date": "2022-08-04"
+                "date": "2022-08-30"
             },
             "Nauli": {
                 "count": "1",
@@ -44,12 +44,12 @@
                 "date": "2022-08-04"
             },
             "Chakula": {
-                "count": "6",
+                "count": "8",
                 "name": "Chakula",
-                "total_amount": "15,500",
+                "total_amount": "45,500",
                 "category": "expenses",
                 "icon": "food",
-                "date": "2022-08-22"
+                "date": "2022-09-02"
             },
             "Vocha": {
                 "count": "1",

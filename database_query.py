@@ -71,10 +71,27 @@ class Database_query:
             self.update_category(data)
 
     def account_info(self):
-        with open("database/account.json") as file:
+        with open("database/account.json", "r") as file:
             data = json.load(file)
             acc = data["account"]["info"]
             inc = data["income"]["info"]
             exp = data["expenses"]["info"]
 
         return [str(acc), str(inc), str(exp)]
+
+    def mobile_wallets(self):
+        data = self.read_data("database/account.json")
+        airtel = data["airtel"]["info"]
+        voda = data["voda"]["info"]
+        tigo = data["tigo"]["info"]
+        halotel = data["halotel"]["info"]
+
+        return [airtel, voda, tigo, halotel]
+
+    def read_data(self, file_name):
+        with open(file_name, "r") as file:
+            data = json.load(file)
+
+            return data
+
+

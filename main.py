@@ -10,7 +10,10 @@ from kivy import utils
 from kivy.base import EventLoop
 from kivymd.toast import toast
 from kivymd.uix.bottomsheet import MDListBottomSheet
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.card import MDCard
+from kivymd.uix.dialog import MDDialog
 from kivymd.uix.textfield import MDTextField
 
 from database_query import Database_query as DQ
@@ -26,6 +29,16 @@ if utils.platform != 'android':
 
 class More(MDCard):
     icon = StringProperty("")
+
+
+class WalletsInputs(MDBoxLayout):
+    pass
+
+
+class Wallet(MDDialog):
+    name = StringProperty("")
+    color = ListProperty([])
+    amount = StringProperty("")
 
 
 class RowCard(MDCard):
@@ -46,6 +59,8 @@ class RowCard(MDCard):
 class NumberOnlyField(MDTextField):
     pat = re.compile('[^0-9]')
 
+    input_type = "number"
+
     def insert_text(self, substring, from_undo=False):
 
         pat = self.pat
@@ -62,6 +77,9 @@ class NumberOnlyField(MDTextField):
 class MainApp(MDApp):
     size_x, size_y = NumericProperty(0), NumericProperty(0)
     sm = ObjectProperty()
+
+    # dialog
+    wallet_inpt = None
 
     # screen
     screens = ["genesis"]
@@ -93,6 +111,13 @@ class MainApp(MDApp):
     income = StringProperty(DQ.account_info(DQ())[1])
     expenses = StringProperty(DQ.account_info(DQ())[2])
 
+    # Mobile Wallets
+    wallets = ListProperty([DQ.mobile_wallets(DQ())])
+    mpesa = StringProperty("0")
+    airtel = StringProperty("0")
+    tigo = StringProperty("0")
+    halotel = StringProperty("0")
+
     # DUMMY VARS
     dummy_cash = StringProperty("0")
     dummy_amount = StringProperty("0")
@@ -102,6 +127,8 @@ class MainApp(MDApp):
         self.sm = self.root
         self.keyboard_hooker()
         self.backgrounds()
+        kbd = self.root.ids.lgn_code
+        kbd.input_type = "number"
         Clock.schedule_once(lambda x: self.register_check(), .1)
 
     def backgrounds(self):
@@ -251,7 +278,6 @@ class MainApp(MDApp):
     def add_item(self):
         self.symbol_calc()
         main = DT.load_today(DT())
-
         if main:
             self.today_exp_inc()
             for i, y in main.items():
@@ -277,6 +303,9 @@ class MainApp(MDApp):
                         )
                         self.count = + 1
                 self.counter = self.counter + 1
+        else:
+            img = self.root.ids.nodata
+            img.source = "components/icons/file-plus.jpg"
 
     data_count = 0
 
@@ -368,12 +397,68 @@ class MainApp(MDApp):
         bottom_sheet_menu.open()
 
     def container_maker(self):
-        self.data_container(self.data_name, self.amount, self.category, self.data_icon)
+        print(self.data_name, self.amount, self.category, self.data_icon)
+        if self.data_name != "Chagua Aina!" and self.amount != "0" and self.category != "" and self.data_icon != "exclamation":
+            self.data_container(self.data_name, self.amount, self.category, self.data_icon)
+            self.screen_leave()
+            img = self.root.ids.nodata
+            img.source = ""
+        else:
+            toast("Please dont fuck around!")
 
     def data_container(self, name, amount, cate, icon):
         DT.data_input(DT(), name, amount, cate, icon)
         self.update_items()
         self.refresh()
+
+    def spin_dialog(self):
+        if not self.wallet_inpt:
+            self.wallet_inpt = MDDialog(
+                type="custom",
+                auto_dismiss=False,
+                size_hint=(.6, None),
+                content_cls=WalletsInputs(),
+            )
+        self.wallet_inpt.open()
+
+    # WALLETS VARIABLES SPECIAL
+    wallet_name = StringProperty("")
+    wallet_color = ListProperty([])
+    w_amount = StringProperty("")
+
+    def phone_verfy_dialog(self):
+        self.wallet_inpt = Wallet(
+            title=f"Enter {self.wallet_name} amount",
+            name=f"{self.wallet_name} Amount",
+            color=self.wallet_color,
+            buttons=[
+                MDFlatButton(
+                    text="Cancel", theme_text_color="Custom", text_color=self.wallet_color,
+                    on_release=lambda x: self.wallet_inpt.dismiss()
+                ),
+                MDRaisedButton(
+                    text="Submit", md_bg_color=self.wallet_color,
+                    on_release=lambda x: self.update_wallet_amount(self.w_amount)
+                ),
+            ],
+        )
+
+        self.wallet_inpt.open()
+
+    def update_wallet_amount(self, amount):
+        self.wallet_inpt.dismiss()
+        if self.wallet_name == "Mpesa":
+            DT.update_wallet(DT(), "voda", amount)
+            self.wallets_amount()
+        if self.wallet_name == "Tigopesa":
+            DT.update_wallet(DT(), "tigo", amount)
+            self.wallets_amount()
+        if self.wallet_name == "Halotel":
+            DT.update_wallet(DT(), "halotel", amount)
+            self.wallets_amount()
+        if self.wallet_name == "Airtel":
+            DT.update_wallet(DT(), "airtel", amount)
+            self.wallets_amount()
 
     """
         End of Data Inputs Functions
@@ -387,11 +472,19 @@ class MainApp(MDApp):
     def toasting(self):
         toast("chagua matumizi au kipato!")
 
+    def wallets_amount(self):
+        self.wallets = [DQ.mobile_wallets(DQ())]
+        self.airtel = str(self.wallets[0][0])
+        self.mpesa = self.wallets[0][1]
+        self.tigo = self.wallets[0][2]
+        self.halotel = self.wallets[0][3]
+
     def symbol_calc(self):
         inc = self.income.replace(",", "")
         exp = self.expenses.replace(",", "")
         acc = int(inc) - int(exp)
         self.perc_update()
+        self.wallets_amount()
         if acc > 0:
             self.dummy_account_amount = f"+{self.account_amount}/="
         elif acc < 0:

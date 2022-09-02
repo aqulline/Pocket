@@ -71,22 +71,30 @@ class Database():
         self.index_fill()
         exp_data = self.read_data("database/expense.json")
         inc_data = self.read_data("database/income.json")
-        if self.week_no in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
-            exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
-            inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
-            all_data = {**exp_main, **inc_main}
-            all_data = dict(sorted(all_data.items()))
-            return all_data
-        elif self.week_no in exp_data["data"][self.year_id] and self.week_no not in inc_data["data"][self.year_id]:
-            exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
-            all_data = exp_main
-            all_data = dict(sorted(all_data.items()))
-            return all_data
-        elif self.week_no not in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
-            inc_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
-            all_data = inc_main
-            all_data = dict(sorted(all_data.items()))
-            return all_data
+        if self.year_id in exp_data["data"] and self.year_id in inc_data["data"]:
+            if self.week_no in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
+                if self.main_date in exp_data["data"][self.year_id][self.week_no]:
+                    exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+                    inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
+                    all_data = {**exp_main, **inc_main}
+                    all_data = dict(sorted(all_data.items()))
+                    return all_data
+                else:
+                    pass
+            elif self.week_no in exp_data["data"][self.year_id] and self.week_no not in inc_data["data"][self.year_id]:
+                if self.main_date in exp_data["data"][self.year_id][self.week_no]:
+                    exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+                    all_data = exp_main
+                    all_data = dict(sorted(all_data.items()))
+                    return all_data
+            elif self.week_no not in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
+                if self.main_date in inc_data["data"][self.year_id][self.week_no]:
+                    inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
+                    all_data = inc_main
+                    all_data = dict(sorted(all_data.items()))
+                    return all_data
+            else:
+                pass
         else:
             pass
 
@@ -94,39 +102,42 @@ class Database():
         self.index_fill()
         exp_data = self.read_data("database/expense.json")
         inc_data = self.read_data("database/income.json")
-        if self.week_no in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
-            exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
-            inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
-            all_data = {**exp_main, **inc_main}
-            all_data = dict(sorted(all_data.items()))
-            exp = 0
-            inc = 0
-            for i, y in all_data.items():
-                if y["category"] == "expenses":
-                    exp = exp + int(y["amount"].replace(",", ""))
-                else:
-                    inc = inc + int(y["amount"].replace(",", ""))
-            return [exp, inc]
-        elif self.week_no in exp_data["data"][self.year_id] and self.week_no not in inc_data["data"][self.year_id]:
-            exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
-            all_data = exp_main
-            all_data = dict(sorted(all_data.items()))
-            exp = 0
-            inc = 0
-            for i, y in all_data.items():
-                if y["category"] == "expenses":
-                    exp = exp + int(y["amount"].replace(",", ""))
+        if self.year_id in exp_data["data"] and self.year_id in inc_data["data"]:
+            if self.week_no in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
+                exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+                inc_main = inc_data["data"][self.year_id][self.week_no][self.main_date]
+                all_data = {**exp_main, **inc_main}
+                all_data = dict(sorted(all_data.items()))
+                exp = 0
+                inc = 0
+                for i, y in all_data.items():
+                    if y["category"] == "expenses":
+                        exp = exp + int(y["amount"].replace(",", ""))
+                    else:
+                        inc = inc + int(y["amount"].replace(",", ""))
                 return [exp, inc]
-        elif self.week_no not in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
-            inc_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
-            all_data = inc_main
-            all_data = dict(sorted(all_data.items()))
-            exp = 0
-            inc = 0
-            for i, y in all_data.items():
-                if y["category"] == "expenses":
-                    inc = inc + int(y["amount"].replace(",", ""))
-                return [exp, inc]
+            elif self.week_no in exp_data["data"][self.year_id] and self.week_no not in inc_data["data"][self.year_id]:
+                exp_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+                all_data = exp_main
+                all_data = dict(sorted(all_data.items()))
+                exp = 0
+                inc = 0
+                for i, y in all_data.items():
+                    if y["category"] == "expenses":
+                        exp = exp + int(y["amount"].replace(",", ""))
+                    return [exp, inc]
+            elif self.week_no not in exp_data["data"][self.year_id] and self.week_no in inc_data["data"][self.year_id]:
+                inc_main = exp_data["data"][self.year_id][self.week_no][self.main_date]
+                all_data = inc_main
+                all_data = dict(sorted(all_data.items()))
+                exp = 0
+                inc = 0
+                for i, y in all_data.items():
+                    if y["category"] == "expenses":
+                        inc = inc + int(y["amount"].replace(",", ""))
+                    return [exp, inc]
+            else:
+                return []
         else:
             return []
 
@@ -186,6 +197,17 @@ class Database():
         else:
             self.update_month(data)
 
+    def update_wallet(self, name, amount):
+        data = self.read_data("database/account.json")
+        info = '{:,}'.format(int(amount))
+        new_data = {
+            "info": info,
+            "income": data[name]["income"],
+            "expenses": data[name]["expenses"]
+        }
+        data[name].update(new_data)
+        self.write_data("database/account.json", data)
+
     def account_info(self, amount, cate):
         if cate == "expenses":
             data = self.read_data("database/account.json")
@@ -202,7 +224,8 @@ class Database():
                 "income": {"info": inc},
                 "expenses": {"info": exp}
             }
-            self.write_data("database/account.json", new_data)
+            data.update(new_data)
+            self.write_data("database/account.json", data)
         elif cate == "income":
             data = self.read_data("database/account.json")
             exp = data["expenses"]["info"]
@@ -287,3 +310,4 @@ class Database():
 # Database.date_format(Database())
 # Database.data_input(Database(), "kitungu", "200", "income", "dog")
 # Database.today_total(Database())
+# Database.update_wallet(Database(), "airtel", "3000")
