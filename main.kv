@@ -326,8 +326,32 @@ ScreenManager:
                 text: 'Stats'
                 icon: 'chart-line'
                 MDBoxLayout:
-                    MDLabel:
-                        text:"hello 1"
+                    orientation: "vertical"
+
+                    MDToolbar:
+                        title: "Stats"
+                        specific_text_color:78/255, 82/255, 84/255, 1
+                        md_bg_color:1, 1, 1, 1
+
+                    MDTabs:
+                        allow_stretch:False
+                        background_color:1, 1, 1, 1
+                        indicator_color:36/255, 146/255, 255/255, 1
+                        tab_hint_x:True
+                        text_color_active:78/255, 82/255, 84/255, 1
+                        text_color_normal:.5, .5, .5, 1
+                        Tab:
+                            title: "Income"
+                            FloatLayout:
+                                MDLabel:
+                                    halign:"center"
+                                    text:"hello"
+                        Tab:
+                            title: "Expenses"
+                            FloatLayout:
+                                MDLabel:
+                                    halign:"center"
+                                    text:"hello"
 
             MDBottomNavigationItem:
                 name: 'accounts'

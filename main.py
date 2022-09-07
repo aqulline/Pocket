@@ -14,6 +14,8 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.card import MDCard
 from kivymd.uix.dialog import MDDialog
+from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.textfield import MDTextField
 
 from database_query import Database_query as DQ
@@ -54,6 +56,10 @@ class RowCard(MDCard):
         else:
             self.price = "+" + prc + "/="
         return self.price
+
+
+class Tab(MDBoxLayout, MDTabsBase):
+    pass
 
 
 class NumberOnlyField(MDTextField):
